@@ -1,0 +1,5 @@
+.DS_Store
+.claude/
+extracted/
+node_modules/
+*.log
