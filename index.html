@@ -2314,30 +2314,136 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
         <h2 class="title reveal">76 años de desarrollo.</h2>
         <p class="subtitle reveal">Y todo se aceleró en los últimos 4.</p>
 
-        <div class="timeline mt-gap-lg stagger" style="width: 100%;">
-            <div class="timeline-row enhanced">
-                <div class="timeline-icon">
-                    <!-- Microphone (Siri/Alexa) -->
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>
+        <div class="stagger mt-gap-lg" style="width: 100%;">
+            <!-- 2011-15 — Asistentes de voz (Siri/Alexa) -->
+            <div class="history-row">
+                <div class="history-year">2011-15</div>
+                <div class="history-thumb">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="sky2011" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#B39DDB"/>
+                                <stop offset="100%" stop-color="#EDE9FE"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="100" height="100" fill="url(#sky2011)"/>
+                        <!-- iPhone silhouette (izquierda) -->
+                        <rect x="14" y="22" width="28" height="56" rx="5" fill="#1A1A2E"/>
+                        <rect x="17" y="28" width="22" height="38" rx="1" fill="#fff"/>
+                        <!-- Siri wave circle -->
+                        <circle cx="28" cy="47" r="9" fill="none" stroke="#6B46C1" stroke-width="2"/>
+                        <circle cx="28" cy="47" r="5" fill="#6B46C1"/>
+                        <!-- Home button -->
+                        <circle cx="28" cy="72" r="2" fill="#fff" stroke="#6B46C1" stroke-width="0.8"/>
+                        <!-- Alexa cylinder (derecha) -->
+                        <ellipse cx="70" cy="32" rx="14" ry="4" fill="#3B1A78"/>
+                        <rect x="56" y="32" width="28" height="40" fill="#3B1A78"/>
+                        <ellipse cx="70" cy="72" rx="14" ry="4" fill="#2A0F5C"/>
+                        <!-- Alexa ring light -->
+                        <ellipse cx="70" cy="32" rx="14" ry="4" fill="none" stroke="#B39DDB" stroke-width="2.5"/>
+                        <!-- Sound waves -->
+                        <g stroke="#6B46C1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.85">
+                            <path d="M46 40 Q50 42 50 47 Q50 52 46 54"/>
+                            <path d="M44 35 Q54 40 54 47 Q54 54 44 59"/>
+                        </g>
+                        <!-- Year stamp -->
+                        <rect x="4" y="87" width="26" height="10" rx="1" fill="#3B1A78" opacity="0.95"/>
+                        <text x="17" y="94" font-size="6" font-weight="900" fill="#fff" text-anchor="middle" font-family="Poppins, sans-serif" letter-spacing="0.05em">11—15</text>
+                    </svg>
                 </div>
-                <div class="timeline-year">2011-15</div>
-                <div class="timeline-text">Siri, Alexa, reconocimiento facial. La IA entra en la vida cotidiana.</div>
+                <div class="history-text"><strong>Siri</strong> (2011), <strong>Alexa</strong> (2014) y el reconocimiento facial. La IA entra en la vida cotidiana.</div>
             </div>
-            <div class="timeline-row enhanced">
-                <div class="timeline-icon">
-                    <!-- Rocket -->
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c-2-3 0-9 8-13 8 4 10 10 8 13-1 2-3 1-5-1-1-1-2 0-3 1-1 1-2 2-3 1-2-2-4-3-5 0z"/><circle cx="14" cy="10" r="2"/></svg>
+
+            <!-- 2022 — ChatGPT lanzamiento -->
+            <div class="history-row">
+                <div class="history-year">2022</div>
+                <div class="history-thumb">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Fondo: noche de lanzamiento (verde OpenAI + morado) -->
+                        <defs>
+                            <linearGradient id="gpt2022" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#10A37F"/>
+                                <stop offset="100%" stop-color="#3B1A78"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="100" height="100" fill="url(#gpt2022)"/>
+                        <!-- Chat window mockup -->
+                        <rect x="14" y="22" width="72" height="52" rx="4" fill="#fff"/>
+                        <rect x="14" y="22" width="72" height="9" rx="4" fill="#10A37F"/>
+                        <!-- ChatGPT hex/flower icon in header -->
+                        <g transform="translate(20, 26)">
+                            <circle cx="0" cy="0" r="3" fill="#fff"/>
+                            <path d="M0 -2 L2 -1 L2 1 L0 2 L-2 1 L-2 -1 Z" fill="#10A37F"/>
+                        </g>
+                        <text x="36" y="29" font-size="5" font-weight="800" fill="#fff" font-family="Poppins, sans-serif">ChatGPT</text>
+                        <!-- Chat lines -->
+                        <rect x="20" y="37" width="22" height="3" rx="1.5" fill="#E6F4EF"/>
+                        <rect x="20" y="43" width="38" height="3" rx="1.5" fill="#10A37F"/>
+                        <rect x="20" y="49" width="30" height="3" rx="1.5" fill="#10A37F"/>
+                        <rect x="58" y="56" width="22" height="3" rx="1.5" fill="#E6F4EF"/>
+                        <rect x="50" y="62" width="30" height="3" rx="1.5" fill="#E6F4EF"/>
+                        <!-- 100M stat badge -->
+                        <rect x="62" y="9" width="30" height="14" rx="7" fill="#F5BE4F"/>
+                        <text x="77" y="19" font-size="8" font-weight="900" fill="#1A1A2E" text-anchor="middle" font-family="Poppins, sans-serif">100M</text>
+                        <!-- Sparkle -->
+                        <g fill="#fff">
+                            <path d="M12 80 l2 5 l5 2 l-5 2 l-2 5 l-2 -5 l-5 -2 l5 -2 z" opacity="0.9"/>
+                        </g>
+                        <!-- Year stamp -->
+                        <rect x="70" y="87" width="26" height="10" rx="1" fill="#3B1A78"/>
+                        <text x="83" y="94" font-size="7" font-weight="900" fill="#fff" text-anchor="middle" font-family="Poppins, sans-serif" letter-spacing="0.1em">2022</text>
+                    </svg>
                 </div>
-                <div class="timeline-year">2022</div>
-                <div class="timeline-text">OpenAI lanza <strong>ChatGPT</strong>. 100 millones de usuarios en 2 meses.</div>
+                <div class="history-text">OpenAI lanza <strong>ChatGPT</strong>. <strong>100 millones de usuarios en 2 meses</strong>.</div>
             </div>
-            <div class="timeline-row enhanced">
-                <div class="timeline-icon">
-                    <!-- Sparkles (explosión) -->
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"/></svg>
+
+            <!-- 2024-26 — Explosión IA -->
+            <div class="history-row">
+                <div class="history-year">2024-26</div>
+                <div class="history-thumb">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="explosion2024" cx="50%" cy="50%">
+                                <stop offset="0%" stop-color="#B39DDB"/>
+                                <stop offset="100%" stop-color="#3B1A78"/>
+                            </radialGradient>
+                        </defs>
+                        <rect width="100" height="100" fill="url(#explosion2024)"/>
+                        <!-- Central sparkle burst -->
+                        <g transform="translate(50, 48)">
+                            <g stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6">
+                                <line x1="0" y1="-22" x2="0" y2="-14"/>
+                                <line x1="0" y1="14" x2="0" y2="22"/>
+                                <line x1="-22" y1="0" x2="-14" y2="0"/>
+                                <line x1="14" y1="0" x2="22" y2="0"/>
+                                <line x1="-16" y1="-16" x2="-10" y2="-10"/>
+                                <line x1="10" y1="10" x2="16" y2="16"/>
+                                <line x1="-16" y1="16" x2="-10" y2="10"/>
+                                <line x1="10" y1="-10" x2="16" y2="-16"/>
+                            </g>
+                        </g>
+                        <!-- Tool logo badges distribuidos -->
+                        <!-- ChatGPT -->
+                        <circle cx="24" cy="28" r="9" fill="#10A37F"/>
+                        <text x="24" y="31" font-size="7" font-weight="900" fill="#fff" text-anchor="middle" font-family="Poppins, sans-serif">G</text>
+                        <!-- Claude (star) -->
+                        <circle cx="76" cy="28" r="9" fill="#DE7356"/>
+                        <path d="M76 23 L77.5 27 L81.5 28 L77.5 29 L76 33 L74.5 29 L70.5 28 L74.5 27 Z" fill="#fff"/>
+                        <!-- Gemini sparkle -->
+                        <circle cx="24" cy="68" r="9" fill="#4285F4"/>
+                        <path d="M24 64 L25 67 C25.3 67.7 25.6 68 26.2 68.2 L29 68 L26.2 67.8 C25.6 67.6 25.3 67.3 25 66.6 L24 64 Z M24 72 L23 69 C22.7 68.3 22.4 68 21.8 67.8 L19 68 L21.8 68.2 C22.4 68.4 22.7 68.7 23 69.4 L24 72 Z" fill="#fff"/>
+                        <!-- Meta infinity -->
+                        <circle cx="76" cy="68" r="9" fill="#A024EF"/>
+                        <path d="M71 68 Q71 65 73 65 Q75 65 76.5 68 Q78 71 80 71 Q82 71 82 68 Q82 65 80 65 Q78 65 76.5 68 Q75 71 73 71 Q71 71 71 68" fill="none" stroke="#fff" stroke-width="1.8"/>
+                        <!-- Central flash -->
+                        <circle cx="50" cy="48" r="11" fill="#fff" opacity="0.9"/>
+                        <path d="M50 41 l2.5 6 l6 2.5 l-6 2.5 l-2.5 6 l-2.5 -6 l-6 -2.5 l6 -2.5 z" fill="#3B1A78"/>
+                        <!-- Year stamp -->
+                        <rect x="4" y="87" width="26" height="10" rx="1" fill="#fff"/>
+                        <text x="17" y="94" font-size="6" font-weight="900" fill="#3B1A78" text-anchor="middle" font-family="Poppins, sans-serif" letter-spacing="0.05em">24—26</text>
+                    </svg>
                 </div>
-                <div class="timeline-year">2024-26</div>
-                <div class="timeline-text">Explosión: Claude, Gemini, Meta AI, imágenes, voz, <strong>agentes autónomos</strong>.</div>
+                <div class="history-text">Explosión: <strong>Claude, Gemini, Meta AI</strong>, imágenes, voz, <strong>agentes autónomos</strong>.</div>
             </div>
         </div>
     </div>
