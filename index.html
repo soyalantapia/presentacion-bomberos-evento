@@ -1693,7 +1693,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             <div class="title-meta-row" style="opacity:0.65">Organiza: Escuela de Dirigentes San Pedro · UCR · XNOD</div>
         </div>
     </div>
-    <div class="slide-number">01 · 51</div>
+    <div class="slide-number">01 · 52</div>
 </section>
 
 
@@ -1717,100 +1717,118 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             Cinco bloques para pasar del <em>"no entiendo de IA"</em> al <em>"ya sé qué hacer el lunes"</em>.
         </p>
 
-        <!-- Roadmap horizontal: 5 bloques + 2 Q&A blocks + coffee break marker -->
-        <div class="stagger" style="display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,0.8fr) auto minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,0.8fr); gap: clamp(0.4rem, 0.85vw, 0.7rem); align-items: stretch; width: 100%; margin-top: clamp(0.5rem, 1vh, 1rem); position: relative;">
+        <!-- Roadmap en 2 filas — más aire, cards más grandes -->
+        <div style="display: flex; flex-direction: column; gap: clamp(0.7rem, 1.6vh, 1.3rem); width: 100%; margin-top: clamp(0.4rem, 1vh, 0.8rem);">
 
-            <!-- Bloque 01 — CONECTAR -->
-            <div class="feature-card" style="position: relative; padding: clamp(0.9rem, 1.5vw, 1.3rem); border-top: 4px solid var(--violet-500);">
-                <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--violet-500); margin-bottom: 0.2rem;">BLOQUE 01</div>
-                <div style="font-size: clamp(0.95rem, 1.2vw, 1.15rem); font-weight: 800; color: var(--violet-700); letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 0.4rem;">Conectar y entender</div>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.2rem; font-size: clamp(0.7rem, 0.9vw, 0.84rem); color: var(--text-soft); line-height: 1.4;">
-                    <li>→ ¿Qué es realmente la IA?</li>
-                    <li>→ 76 años de historia</li>
-                    <li>→ Los 6 mitos más grandes</li>
-                </ul>
-            </div>
-
-            <!-- Bloque 02 — HERRAMIENTAS -->
-            <div class="feature-card" style="position: relative; padding: clamp(0.9rem, 1.5vw, 1.3rem); border-top: 4px solid var(--violet-500);">
-                <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--violet-500); margin-bottom: 0.2rem;">BLOQUE 02</div>
-                <div style="font-size: clamp(0.95rem, 1.2vw, 1.15rem); font-weight: 800; color: var(--violet-700); letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 0.4rem;">Las herramientas</div>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.2rem; font-size: clamp(0.7rem, 0.9vw, 0.84rem); color: var(--text-soft); line-height: 1.4;">
-                    <li>→ Cómo hablarle a la IA</li>
-                    <li>→ ChatGPT · Claude · Meta</li>
-                    <li>→ Canva · Gemini en vivo</li>
-                </ul>
-            </div>
-
-            <!-- Preguntas 1 — como bloque -->
-            <div class="feature-card" style="position: relative; padding: clamp(0.9rem, 1.5vw, 1.3rem); border-top: 4px solid var(--violet-700); background: var(--lavender);">
-                <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--violet-700); margin-bottom: 0.2rem;">Q&amp;A</div>
-                <div style="font-size: clamp(0.95rem, 1.2vw, 1.15rem); font-weight: 800; color: var(--violet-700); letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem;">
-                    <span style="display: inline-flex; width: clamp(24px, 2vw, 30px); height: clamp(24px, 2vw, 30px); border-radius: 50%; background: var(--violet-500); color: white; align-items: center; justify-content: center; font-size: 0.9em; font-weight: 900;">?</span>
-                    Preguntas
+            <!-- FILA 1: antes del coffee break -->
+            <div>
+                <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.22em; color: var(--violet-500); text-transform: uppercase; margin-bottom: clamp(0.35rem, 0.8vh, 0.55rem);">
+                    Primera parte &nbsp;·&nbsp; Entender + herramientas
                 </div>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.2rem; font-size: clamp(0.7rem, 0.9vw, 0.84rem); color: var(--text-soft); line-height: 1.4;">
-                    <li>→ Consultas del público</li>
-                    <li>→ Micrófono abierto</li>
-                </ul>
-            </div>
+                <div class="stagger" style="display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,0.85fr) auto; gap: clamp(0.6rem, 1.2vw, 1rem); align-items: stretch;">
 
-            <!-- Coffee break marker -->
-            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 clamp(0.2rem, 0.4vw, 0.4rem); min-width: 50px;">
-                <div style="width: clamp(42px, 4vw, 56px); height: clamp(42px, 4vw, 56px); border-radius: 50%; background: var(--violet-700); color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px -10px rgba(59,26,120,0.5);">
-                    <svg width="60%" height="60%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                    <!-- Bloque 01 -->
+                    <div class="feature-card" style="position: relative; padding: clamp(1rem, 1.8vw, 1.5rem); border-top: 4px solid var(--violet-500);">
+                        <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--violet-500); margin-bottom: 0.3rem;">BLOQUE 01</div>
+                        <div style="font-size: clamp(1rem, 1.4vw, 1.25rem); font-weight: 800; color: var(--violet-700); letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 0.6rem;">Conectar y entender</div>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.3rem; font-size: clamp(0.8rem, 1.05vw, 0.95rem); color: var(--text-soft); line-height: 1.45;">
+                            <li>→ ¿Qué es realmente la IA?</li>
+                            <li>→ 76 años de historia</li>
+                            <li>→ Los 6 mitos más grandes</li>
+                        </ul>
+                    </div>
+
+                    <!-- Bloque 02 -->
+                    <div class="feature-card" style="position: relative; padding: clamp(1rem, 1.8vw, 1.5rem); border-top: 4px solid var(--violet-500);">
+                        <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--violet-500); margin-bottom: 0.3rem;">BLOQUE 02</div>
+                        <div style="font-size: clamp(1rem, 1.4vw, 1.25rem); font-weight: 800; color: var(--violet-700); letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 0.6rem;">Las herramientas</div>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.3rem; font-size: clamp(0.8rem, 1.05vw, 0.95rem); color: var(--text-soft); line-height: 1.45;">
+                            <li>→ Cómo hablarle a la IA</li>
+                            <li>→ ChatGPT · Claude · Meta</li>
+                            <li>→ Canva · Gemini en vivo</li>
+                        </ul>
+                    </div>
+
+                    <!-- Q&A 1 — bloque -->
+                    <div class="feature-card" style="position: relative; padding: clamp(1rem, 1.8vw, 1.5rem); border-top: 4px solid var(--violet-700); background: var(--lavender);">
+                        <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--violet-700); margin-bottom: 0.3rem;">Q&amp;A · 1ª RONDA</div>
+                        <div style="font-size: clamp(1rem, 1.4vw, 1.25rem); font-weight: 800; color: var(--violet-700); letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="display: inline-flex; width: clamp(28px, 2.4vw, 34px); height: clamp(28px, 2.4vw, 34px); border-radius: 50%; background: var(--violet-500); color: white; align-items: center; justify-content: center; font-size: 0.95em; font-weight: 900;">?</span>
+                            Preguntas
+                        </div>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.3rem; font-size: clamp(0.8rem, 1.05vw, 0.95rem); color: var(--text-soft); line-height: 1.45;">
+                            <li>→ Consultas del público</li>
+                            <li>→ Micrófono abierto</li>
+                        </ul>
+                    </div>
+
+                    <!-- Coffee break marker -->
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 clamp(0.4rem, 0.8vw, 0.8rem); min-width: 80px;">
+                        <div style="width: clamp(56px, 5vw, 74px); height: clamp(56px, 5vw, 74px); border-radius: 50%; background: var(--violet-700); color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 14px 30px -10px rgba(59,26,120,0.5);">
+                            <svg width="58%" height="58%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                        </div>
+                        <div style="font-size: clamp(0.64rem, 0.8vw, 0.76rem); font-weight: 700; letter-spacing: 0.15em; color: var(--violet-700); margin-top: 0.55rem; text-align: center; text-transform: uppercase;">Coffee<br/>Break</div>
+                    </div>
                 </div>
-                <div style="font-size: clamp(0.56rem, 0.72vw, 0.68rem); font-weight: 700; letter-spacing: 0.15em; color: var(--violet-700); margin-top: 0.4rem; text-align: center; text-transform: uppercase;">Coffee<br/>Break</div>
             </div>
 
-            <!-- Bloque 03 — VENDER -->
-            <div class="feature-card" style="position: relative; padding: clamp(0.9rem, 1.5vw, 1.3rem); border-top: 4px solid var(--violet-500);">
-                <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--violet-500); margin-bottom: 0.2rem;">BLOQUE 03</div>
-                <div style="font-size: clamp(0.95rem, 1.2vw, 1.15rem); font-weight: 800; color: var(--violet-700); letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 0.4rem;">Vender y comunicar</div>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.2rem; font-size: clamp(0.7rem, 0.9vw, 0.84rem); color: var(--text-soft); line-height: 1.4;">
-                    <li>→ Campañas en 10 min</li>
-                    <li>→ Mails y propuestas</li>
-                    <li>→ Automatizar respuestas</li>
-                </ul>
-            </div>
-
-            <!-- Bloque 04 — EN VIVO -->
-            <div class="feature-card" style="position: relative; padding: clamp(0.9rem, 1.5vw, 1.3rem); border-top: 4px solid var(--violet-500);">
-                <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--violet-500); margin-bottom: 0.2rem;">BLOQUE 04</div>
-                <div style="font-size: clamp(0.95rem, 1.2vw, 1.15rem); font-weight: 800; color: var(--violet-700); letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 0.4rem;">Tu problema, en vivo</div>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.2rem; font-size: clamp(0.7rem, 0.9vw, 0.84rem); color: var(--text-soft); line-height: 1.4;">
-                    <li>→ 2 o 3 voluntarios</li>
-                    <li>→ Tu negocio, tu duda</li>
-                    <li>→ IA resolviéndolo acá</li>
-                </ul>
-            </div>
-
-            <!-- Bloque 05 — CIERRE -->
-            <div class="feature-card" style="position: relative; padding: clamp(0.9rem, 1.5vw, 1.3rem); border-top: 4px solid var(--violet-500);">
-                <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--violet-500); margin-bottom: 0.2rem;">BLOQUE 05</div>
-                <div style="font-size: clamp(0.95rem, 1.2vw, 1.15rem); font-weight: 800; color: var(--violet-700); letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 0.4rem;">Cierre y takeaways</div>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.2rem; font-size: clamp(0.7rem, 0.9vw, 0.84rem); color: var(--text-soft); line-height: 1.4;">
-                    <li>→ 5 acciones para el lunes</li>
-                    <li>→ Dónde conseguir cada tool</li>
-                    <li>→ Cómo seguir en contacto</li>
-                </ul>
-            </div>
-
-            <!-- Preguntas 2 — como bloque (final) -->
-            <div class="feature-card" style="position: relative; padding: clamp(0.9rem, 1.5vw, 1.3rem); border-top: 4px solid var(--violet-700); background: var(--lavender);">
-                <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--violet-700); margin-bottom: 0.2rem;">Q&amp;A FINAL</div>
-                <div style="font-size: clamp(0.95rem, 1.2vw, 1.15rem); font-weight: 800; color: var(--violet-700); letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem;">
-                    <span style="display: inline-flex; width: clamp(24px, 2vw, 30px); height: clamp(24px, 2vw, 30px); border-radius: 50%; background: var(--violet-500); color: white; align-items: center; justify-content: center; font-size: 0.9em; font-weight: 900;">?</span>
-                    Preguntas
+            <!-- FILA 2: después del coffee break -->
+            <div>
+                <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.22em; color: var(--violet-500); text-transform: uppercase; margin-bottom: clamp(0.35rem, 0.8vh, 0.55rem);">
+                    Segunda parte &nbsp;·&nbsp; Aplicar + resolver + cerrar
                 </div>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.2rem; font-size: clamp(0.7rem, 0.9vw, 0.84rem); color: var(--text-soft); line-height: 1.4;">
-                    <li>→ Última ronda de consultas</li>
-                    <li>→ Cómo seguir en contacto</li>
-                </ul>
+                <div class="stagger" style="display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,0.85fr); gap: clamp(0.6rem, 1.2vw, 1rem); align-items: stretch;">
+
+                    <!-- Bloque 03 -->
+                    <div class="feature-card" style="position: relative; padding: clamp(1rem, 1.8vw, 1.5rem); border-top: 4px solid var(--violet-500);">
+                        <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--violet-500); margin-bottom: 0.3rem;">BLOQUE 03</div>
+                        <div style="font-size: clamp(1rem, 1.4vw, 1.25rem); font-weight: 800; color: var(--violet-700); letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 0.6rem;">Vender y comunicar</div>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.3rem; font-size: clamp(0.8rem, 1.05vw, 0.95rem); color: var(--text-soft); line-height: 1.45;">
+                            <li>→ Campañas en 10 min</li>
+                            <li>→ Mails y propuestas</li>
+                            <li>→ Automatizar respuestas</li>
+                        </ul>
+                    </div>
+
+                    <!-- Bloque 04 -->
+                    <div class="feature-card" style="position: relative; padding: clamp(1rem, 1.8vw, 1.5rem); border-top: 4px solid var(--violet-500);">
+                        <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--violet-500); margin-bottom: 0.3rem;">BLOQUE 04</div>
+                        <div style="font-size: clamp(1rem, 1.4vw, 1.25rem); font-weight: 800; color: var(--violet-700); letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 0.6rem;">Tu problema, en vivo</div>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.3rem; font-size: clamp(0.8rem, 1.05vw, 0.95rem); color: var(--text-soft); line-height: 1.45;">
+                            <li>→ 2 o 3 voluntarios</li>
+                            <li>→ Tu negocio, tu duda</li>
+                            <li>→ IA resolviéndolo acá</li>
+                        </ul>
+                    </div>
+
+                    <!-- Bloque 05 -->
+                    <div class="feature-card" style="position: relative; padding: clamp(1rem, 1.8vw, 1.5rem); border-top: 4px solid var(--violet-500);">
+                        <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--violet-500); margin-bottom: 0.3rem;">BLOQUE 05</div>
+                        <div style="font-size: clamp(1rem, 1.4vw, 1.25rem); font-weight: 800; color: var(--violet-700); letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 0.6rem;">Cierre y takeaways</div>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.3rem; font-size: clamp(0.8rem, 1.05vw, 0.95rem); color: var(--text-soft); line-height: 1.45;">
+                            <li>→ 5 acciones para el lunes</li>
+                            <li>→ Dónde conseguir cada tool</li>
+                            <li>→ Cómo seguir en contacto</li>
+                        </ul>
+                    </div>
+
+                    <!-- Q&A Final -->
+                    <div class="feature-card" style="position: relative; padding: clamp(1rem, 1.8vw, 1.5rem); border-top: 4px solid var(--violet-700); background: var(--lavender);">
+                        <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--violet-700); margin-bottom: 0.3rem;">Q&amp;A · FINAL</div>
+                        <div style="font-size: clamp(1rem, 1.4vw, 1.25rem); font-weight: 800; color: var(--violet-700); letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="display: inline-flex; width: clamp(28px, 2.4vw, 34px); height: clamp(28px, 2.4vw, 34px); border-radius: 50%; background: var(--violet-500); color: white; align-items: center; justify-content: center; font-size: 0.95em; font-weight: 900;">?</span>
+                            Preguntas
+                        </div>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.3rem; font-size: clamp(0.8rem, 1.05vw, 0.95rem); color: var(--text-soft); line-height: 1.45;">
+                            <li>→ Última ronda</li>
+                            <li>→ Cómo seguir en contacto</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="slide-number">02 · 51</div>
+    <div class="slide-number">02 · 52</div>
 </section>
 
 
@@ -1873,7 +1891,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </g>
         </svg>
     </div>
-    <div class="slide-number">03 · 51</div>
+    <div class="slide-number">03 · 52</div>
 </section>
 
 
@@ -1909,7 +1927,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">04 · 51</div>
+    <div class="slide-number">04 · 52</div>
 </section>
 
 
@@ -2001,7 +2019,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">05 · 51</div>
+    <div class="slide-number">05 · 52</div>
 </section>
 
 
@@ -2039,7 +2057,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             Esta charla está armada para los tres grupos. Nadie se va sin algo para usar mañana.
         </div>
     </div>
-    <div class="slide-number">06 · 51</div>
+    <div class="slide-number">06 · 52</div>
 </section>
 
 
@@ -2087,7 +2105,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">07 · 51</div>
+    <div class="slide-number">07 · 52</div>
 </section>
 
 
@@ -2313,7 +2331,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">08 · 51</div>
+    <div class="slide-number">08 · 52</div>
 </section>
 
 
@@ -2461,7 +2479,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">09 · 51</div>
+    <div class="slide-number">09 · 52</div>
 </section>
 
 
@@ -2480,7 +2498,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">10 · 51</div>
+    <div class="slide-number">10 · 52</div>
 </section>
 
 
@@ -2496,7 +2514,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
         </h2>
         <p class="emphasis-footnote reveal">Antes era de científicos. Hoy es tuya.</p>
     </div>
-    <div class="slide-number">11 · 51</div>
+    <div class="slide-number">11 · 52</div>
 </section>
 
 
@@ -2532,7 +2550,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">12 · 51</div>
+    <div class="slide-number">12 · 52</div>
 </section>
 
 <!-- SLIDE 14 — MITO 2: tecnología -> ícono celular con chat -->
@@ -2563,7 +2581,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">13 · 51</div>
+    <div class="slide-number">13 · 52</div>
 </section>
 
 <!-- SLIDE 15 — MITO 3: caro -> ícono billete con etiqueta $0 -->
@@ -2595,7 +2613,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">14 · 51</div>
+    <div class="slide-number">14 · 52</div>
 </section>
 
 <!-- SLIDE 16 — MITO 4: inventa -> ícono alerta/lupa -->
@@ -2624,7 +2642,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">15 · 51</div>
+    <div class="slide-number">15 · 52</div>
 </section>
 
 <!-- SLIDE 17 — MITO 5: moda -> ícono calendario/reloj de arena -->
@@ -2654,7 +2672,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">16 · 51</div>
+    <div class="slide-number">16 · 52</div>
 </section>
 
 <!-- SLIDE 18 — MITO 6: dibujitos -> ícono maletín/trabajo -->
@@ -2684,7 +2702,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">17 · 51</div>
+    <div class="slide-number">17 · 52</div>
 </section>
 
 
@@ -2701,7 +2719,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             Es <span class="accent" style="color: var(--violet-300); font-weight: 700;">alguien que la usa</span> — y vos no.
         </p>
     </div>
-    <div class="slide-number">18 · 51</div>
+    <div class="slide-number">18 · 52</div>
 </section>
 
 
@@ -2745,7 +2763,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             <text x="80" y="440" font-size="28" font-weight="900" fill="#3B1A78" text-anchor="middle" font-family="Poppins, sans-serif">AI</text>
         </svg>
     </div>
-    <div class="slide-number">19 · 51</div>
+    <div class="slide-number">19 · 52</div>
 </section>
 
 
@@ -2813,7 +2831,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">20 · 51</div>
+    <div class="slide-number">20 · 52</div>
 </section>
 
 
@@ -2865,7 +2883,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">21 · 51</div>
+    <div class="slide-number">21 · 52</div>
 </section>
 
 
@@ -2892,7 +2910,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">22 · 51</div>
+    <div class="slide-number">22 · 52</div>
 </section>
 
 
@@ -2931,7 +2949,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">23 · 51</div>
+    <div class="slide-number">23 · 52</div>
 </section>
 
 
@@ -2947,7 +2965,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
         </h2>
         <p class="emphasis-footnote reveal">No es magia. Es dar buenas instrucciones.</p>
     </div>
-    <div class="slide-number">24 · 51</div>
+    <div class="slide-number">24 · 52</div>
 </section>
 
 
@@ -2992,7 +3010,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">25 · 51</div>
+    <div class="slide-number">25 · 52</div>
 </section>
 
 
@@ -3054,7 +3072,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">26 · 51</div>
+    <div class="slide-number">26 · 52</div>
 </section>
 
 
@@ -3098,7 +3116,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">27 · 51</div>
+    <div class="slide-number">27 · 52</div>
 </section>
 
 
@@ -3142,7 +3160,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">28 · 51</div>
+    <div class="slide-number">28 · 52</div>
 </section>
 
 
@@ -3188,7 +3206,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">29 · 51</div>
+    <div class="slide-number">29 · 52</div>
 </section>
 
 
@@ -3234,7 +3252,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             Antes: $30.000 y 3 días → Ahora: gratis, 2 minutos.
         </div>
     </div>
-    <div class="slide-number">30 · 51</div>
+    <div class="slide-number">30 · 52</div>
 </section>
 
 
@@ -3286,7 +3304,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">31 · 51</div>
+    <div class="slide-number">31 · 52</div>
 </section>
 
 
@@ -3340,7 +3358,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">32 · 51</div>
+    <div class="slide-number">32 · 52</div>
 </section>
 
 
@@ -3397,7 +3415,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             Todo esto en vivo, frente a ustedes, en 5 minutos.
         </div>
     </div>
-    <div class="slide-number">33 · 51</div>
+    <div class="slide-number">33 · 52</div>
 </section>
 
 
@@ -3466,7 +3484,79 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">34 · 51</div>
+    <div class="slide-number">34 · 52</div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE NUEVO — PASO 2: CARTA Y COSTEO (con Claude)
+     ============================================================ -->
+<section class="slide content-slide">
+    <div class="slide-inner">
+        <div class="header-row reveal" style="justify-content: space-between; display: flex; align-items: center;">
+            <span class="eyebrow">Bloque 2 · Demo en vivo · Paso 2 de 4</span>
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <div class="tool-logo logo-claude" style="width: clamp(28px, 2.6vw, 38px); height: clamp(28px, 2.6vw, 38px); margin: 0; border-radius: 8px;">
+                    <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z"/></svg>
+                </div>
+                <span style="font-size: var(--size-small); font-weight: 700; color: var(--text-soft); letter-spacing: 0.1em; text-transform: uppercase;">con Claude</span>
+            </div>
+        </div>
+        <div class="reveal" style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.3rem;">
+            <span style="font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 900; color: var(--violet-300); line-height: 1; font-variant-numeric: tabular-nums;">02</span>
+            <h2 class="title" style="margin: 0;">Carta y costeo.</h2>
+        </div>
+        <p class="subtitle reveal" style="max-width: 1100px; margin-bottom: clamp(0.5rem, 1vh, 1rem);">
+            Con el informe en mano, le pedimos <strong style="color: var(--violet-700);">la carta completa con food cost, margen y fundamentación</strong>.
+        </p>
+
+        <div class="reveal" style="display: grid; grid-template-columns: 1fr 1.3fr auto; gap: clamp(1rem, 2vw, 2rem); align-items: stretch;">
+            <!-- Columna 1: PROMPT -->
+            <div style="background: var(--dark); color: var(--white); border-radius: 14px; padding: clamp(0.9rem, 1.5vw, 1.3rem); display: flex; flex-direction: column; position: relative; overflow: hidden;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem;">
+                    <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--violet-300);">PROMPT</div>
+                    <div style="font-family: 'SF Mono', Menlo, monospace; font-size: 0.62rem; color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.08); padding: 2px 7px; border-radius: 4px;">~900 palabras</div>
+                </div>
+                <div style="font-family: 'SF Mono', Menlo, monospace; font-size: clamp(0.58rem, 0.78vw, 0.72rem); line-height: 1.55; color: rgba(255,255,255,0.85); overflow: hidden; flex: 1;">
+                    <span style="color: var(--violet-300); font-weight: 700;">ROL:</span> <strong>Chef-consultor</strong> de apertura + analista de food cost. Lógica de ingeniería de menú (estrella / caballo / puzzle / perro).<br/><br/>
+                    <span style="color: var(--violet-300); font-weight: 700;">INPUT:</span> El informe de mercado previo. <em>Tratalo como verdad operativa.</em><br/><br/>
+                    <span style="color: var(--violet-300); font-weight: 700;">ENTREGA EN 4 BLOQUES:</span><br/>
+                    1. <strong>Decisión</strong> del concepto (1 ganador + descarte explícito de los otros 2).<br/>
+                    2. <strong>Carta completa</strong> con ficha por plato: gramaje, técnica, presentación, costo, precio, FC %, margen, rol.<br/>
+                    3. <strong>Cuadro resumen</strong> de la carta + ticket promedio + FC ponderado + plato ancla.<br/>
+                    4. <strong>Lógica operativa:</strong> pivote crítico, 3 ítems a empujar, estacionalidad.<br/><br/>
+                    <span style="color: var(--violet-300); font-weight: 700;">REGLAS:</span> precios ARS 2026 · FC 28-35% en principales · sin "depende" · cocina de local independiente · rioplatense.
+                </div>
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 50px; background: linear-gradient(180deg, transparent, var(--dark)); pointer-events: none;"></div>
+            </div>
+
+            <!-- Columna 2: RESULTADO -->
+            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--green);">RESULTADO</div>
+                <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px -18px rgba(59, 26, 120, 0.35); border: 1px solid var(--lavender-2); background: var(--white);">
+                    <img src="assets/paso2-claude-carta.jpg" alt="Carta y costeo San Pedro" style="width: 100%; height: auto; display: block; max-height: clamp(280px, 48vh, 540px); object-fit: cover; object-position: top;"/>
+                </div>
+                <p style="font-size: clamp(0.78rem, 1.05vw, 0.95rem); color: var(--text); line-height: 1.45;">
+                    Decisión: <strong style="color: var(--violet-700);">smash burger + brewpub casual</strong>. Carta de 24 ítems con FC ponderado <strong>28,9%</strong>, ticket $27-31K, plato ancla definido y ajustes de estacionalidad invierno/verano.
+                </p>
+            </div>
+
+            <!-- Columna 3: QR al informe -->
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; min-width: clamp(140px, 15vw, 190px);">
+                <div style="font-size: var(--size-tiny); font-weight: 700; letter-spacing: 0.18em; color: var(--violet-500); text-align: center;">CARTA COMPLETA</div>
+                <div style="background: white; border-radius: 10px; padding: 6px; border: 1px solid var(--lavender-2); box-shadow: 0 14px 30px -15px rgba(59, 26, 120, 0.3);">
+                    <img src="assets/qr-carta-costeo.png" alt="QR carta y costeo" style="width: clamp(120px, 13vw, 160px); height: clamp(120px, 13vw, 160px); display: block;"/>
+                </div>
+                <div style="font-size: clamp(0.75rem, 1vw, 0.9rem); font-weight: 700; color: var(--violet-700); text-align: center;">
+                    Ver carta completa
+                </div>
+                <div style="font-size: clamp(0.65rem, 0.85vw, 0.78rem); color: var(--text-soft); text-align: center; font-style: italic;">
+                    24 platos · food cost<br/>por ítem · margen.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">35 · 52</div>
 </section>
 
 
@@ -3483,7 +3573,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             Con IA, lo hicimos <strong style="color: var(--violet-300);">en 5 minutos</strong>.
         </p>
     </div>
-    <div class="slide-number">35 · 51</div>
+    <div class="slide-number">36 · 52</div>
 </section>
 
 
@@ -3540,7 +3630,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </g>
         </svg>
     </div>
-    <div class="slide-number">36 · 51</div>
+    <div class="slide-number">37 · 52</div>
 </section>
 
 
@@ -3582,7 +3672,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             Volvemos en unos minutos ☕
         </p>
     </div>
-    <div class="slide-number">37 · 51</div>
+    <div class="slide-number">38 · 52</div>
 </section>
 
 
@@ -3630,7 +3720,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             <text x="250" y="465" font-size="18" font-weight="700" fill="rgba(255,255,255,0.55)" text-anchor="middle" font-family="Poppins, sans-serif" letter-spacing="0.15em">VENTAS · IMPACTO</text>
         </svg>
     </div>
-    <div class="slide-number">38 · 51</div>
+    <div class="slide-number">39 · 52</div>
 </section>
 
 
@@ -3682,7 +3772,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             Ahora les voy a mostrar cómo multiplicar eso con IA.
         </div>
     </div>
-    <div class="slide-number">39 · 51</div>
+    <div class="slide-number">40 · 52</div>
 </section>
 
 
@@ -3741,7 +3831,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">40 · 51</div>
+    <div class="slide-number">41 · 52</div>
 </section>
 
 
@@ -3801,7 +3891,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">41 · 51</div>
+    <div class="slide-number">42 · 52</div>
 </section>
 
 
@@ -3869,7 +3959,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">42 · 51</div>
+    <div class="slide-number">43 · 52</div>
 </section>
 
 
@@ -3930,7 +4020,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">43 · 51</div>
+    <div class="slide-number">44 · 52</div>
 </section>
 
 
@@ -3988,7 +4078,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </g>
         </svg>
     </div>
-    <div class="slide-number">44 · 51</div>
+    <div class="slide-number">45 · 52</div>
 </section>
 
 
@@ -4038,7 +4128,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">45 · 51</div>
+    <div class="slide-number">46 · 52</div>
 </section>
 
 
@@ -4093,7 +4183,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </g>
         </svg>
     </div>
-    <div class="slide-number">46 · 51</div>
+    <div class="slide-number">47 · 52</div>
 </section>
 
 
@@ -4138,7 +4228,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             TODO ESTO ES GRATIS · TODO DESDE EL CELULAR
         </div>
     </div>
-    <div class="slide-number">47 · 51</div>
+    <div class="slide-number">48 · 52</div>
 </section>
 
 
@@ -4199,7 +4289,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             Todas tienen versión gratuita. Todas funcionan desde el celular.
         </div>
     </div>
-    <div class="slide-number">48 · 51</div>
+    <div class="slide-number">49 · 52</div>
 </section>
 
 
@@ -4216,7 +4306,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             Los que esperen, van a tener que <strong>correr</strong>.
         </p>
     </div>
-    <div class="slide-number">49 · 51</div>
+    <div class="slide-number">50 · 52</div>
 </section>
 
 
@@ -4278,7 +4368,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </g>
         </svg>
     </div>
-    <div class="slide-number">50 · 51</div>
+    <div class="slide-number">51 · 52</div>
 </section>
 
 
@@ -4323,7 +4413,7 @@ body:has(.slide:first-child.visible) .keyboard-hint { opacity: 0.5; }
             </div>
         </div>
     </div>
-    <div class="slide-number">51 · 51</div>
+    <div class="slide-number">52 · 52</div>
 </section>
 
 
