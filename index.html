@@ -172,16 +172,10 @@ img { max-width:100%; max-height:min(50vh,420px); object-fit:contain; }
 .nav-arrow svg { width:48%; height:48%; }
 .nav-arrow.prev { left:clamp(1rem,3vw,2rem); }
 .nav-arrow.next { right:clamp(1rem,3vw,2rem); }
+.nav-arrow { display:none; }
 .nav-arrow[disabled] { opacity:0; pointer-events:none; }
-@media (max-height:600px) { .nav-arrow { display:none; } }
 
-.keyboard-hint {
-    position:fixed; bottom:clamp(0.75rem,2vh,1.25rem); left:50%;
-    transform:translateX(-50%);
-    font-size:var(--size-tiny); color:var(--ink-soft);
-    opacity:0.6; z-index:40; letter-spacing:0.04em;
-    background:rgba(255,255,255,0.65); padding:0.35em 0.9em; border-radius:999px;
-}
+.keyboard-hint { display:none; }
 body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 
 .slide-number {
@@ -359,6 +353,14 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 .demo-answer strong { color:var(--ink); }
 
 /* =========================================================
+   COMPONENTE: FÓRMULA / ESTRUCTURA DEL PEDIDO
+   ========================================================= */
+.formula { list-style:none; display:flex; flex-direction:column; gap:0.7rem; width:100%; max-width:960px; text-align:left; }
+.formula li { display:flex; align-items:baseline; gap:0.5rem; font-size:var(--size-h3); line-height:1.25; flex-wrap:wrap; }
+.formula .key { font-weight:800; color:var(--red-700); white-space:nowrap; }
+.formula .val { font-weight:600; color:var(--ink); background:var(--paper-2); padding:0.08em 0.5em; border-radius:8px; }
+
+/* =========================================================
    COMPONENTE: LISTA "EL LUNES" (números grandes)
    ========================================================= */
 .lunes { list-style:none; display:flex; flex-direction:column; gap:var(--gap); width:100%; max-width:1000px; text-align:left; }
@@ -408,7 +410,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
    COMPONENTE: SOBRE MÍ (bio + foto + medios)
    ========================================================= */
 .about-grid { display:grid; grid-template-columns:1.4fr 1fr; gap:var(--gap-lg); width:100%; align-items:center; text-align:left; }
-.about-text { display:flex; flex-direction:column; gap:var(--gap); }
+.about-text { display:flex; flex-direction:column; gap:0.45rem; }
 .about-text .body-text { max-width:none; }
 .about-text strong { color:var(--red-700); }
 .pills { display:flex; gap:0.5rem; flex-wrap:wrap; }
@@ -420,8 +422,8 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 .media-label { font-size:var(--size-small); font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--red-700); display:inline-flex; align-items:center; gap:0.6em; }
 .media-label::before, .media-label::after { content:""; width:2em; height:2px; background:var(--red-300, var(--red-500)); display:inline-block; opacity:.5; }
 .media-row { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--gap); width:100%; max-width:1050px; }
-.media-item { aspect-ratio:16/10; border-radius:12px; overflow:hidden; }
-.media-item img { width:100%; height:100%; object-fit:cover; display:block; }
+.media-item { aspect-ratio:4/3; border-radius:12px; overflow:hidden; }
+.media-item img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; }
 .media-ph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; border:3px dashed var(--line); border-radius:12px; color:var(--ink-soft); font-weight:700; font-size:var(--size-small); background:var(--paper-2); text-align:center; }
 </style>
 </head>
@@ -448,8 +450,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <!-- ===== S01 · PORTADA ===== -->
 <section class="slide title-slide">
   <div class="slide-inner">
-    <!-- Para poner el logo real: reemplazá este <div> por <img src="assets/logo-federacion.png" alt="Federación" style="max-height:18vh"> -->
-    <div class="placeholder reveal">LOGO DE LA FEDERACIÓN<br><span style="font-weight:400;font-size:0.8em;opacity:.85">(reemplazá este recuadro por el logo)</span></div>
+    <img src="assets/logo-federacion.jpg" alt="Federación de Asociaciones de Bomberos Voluntarios — Provincia de Buenos Aires" class="reveal" style="max-height:18vh;object-fit:contain">
     <h1 class="hero reveal">Inteligencia Artificial<br>para Bomberos</h1>
     <div class="by reveal">Alan Tapia</div>
   </div>
@@ -459,7 +460,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <!-- Para poner las 4 fotos de medios: dejá en assets/ los archivos medio-1.jpg … medio-4.jpg
      (cuando existen aparecen solos; si no, se ve el recuadro "MEDIO N"). -->
 <section class="slide content-slide">
-  <div class="slide-inner" style="justify-content:center;gap:var(--gap-lg)">
+  <div class="slide-inner" style="justify-content:center;gap:var(--gap)">
     <div class="about-grid">
       <div class="about-text">
         <span class="eyebrow reveal">Sobre mí</span>
@@ -523,6 +524,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <!-- ===== S04 · QUÉ ES, LO SIMPLE ===== -->
 <section class="slide content-slide warm">
   <div class="slide-inner">
+    <h2 class="title reveal">Tres cosas a su favor.</h2>
     <div class="three-col stagger">
       <div class="feature">
         <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M50 28C42 22 30 22 22 24v50c8-2 20-2 28 4 8-6 20-6 28-4V24c-8-2-20-2-28 4z"/><line x1="50" y1="28" x2="50" y2="78"/></svg></div>
@@ -580,15 +582,15 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
   <div class="slide-inner">
     <div class="illust sm reveal">
       <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="24" y="18" width="52" height="64" rx="6"/><rect x="34" y="28" width="32" height="20" rx="3"/>
-        <line x1="36" y1="58" x2="52" y2="58"/><rect x="34" y="66" width="32" height="6" rx="3" fill="currentColor"/>
+        <path d="M50 14c4 14-10 18-10 32a10 10 0 0 0 20 0c0-4-2-7-2-7 6 4 10 12 10 21a18 18 0 0 1-36 0c0-20 18-25 18-46z"/>
       </svg>
     </div>
     <div class="mito">
       <div class="mito-false reveal">Me va a reemplazar</div>
       <div class="arrow-down reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg></div>
-      <div class="mito-true reveal">Te saca lo aburrido,<br><span class="accent">no a vos</span>.</div>
+      <div class="mito-true reveal">El papeleo lo hace la máquina.<br><span class="accent">Al fuego entrás vos.</span></div>
     </div>
+    <div class="tiny-note reveal">Te saca lo aburrido, no a vos.</div>
   </div>
 </section>
 
@@ -717,14 +719,31 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
   </div>
 </section>
 
-<!-- ===== S15 · HÁGANLO CONMIGO ===== -->
+<!-- ===== S14b · ESTRUCTURA DEL PEDIDO ===== -->
 <section class="slide content-slide">
   <div class="slide-inner">
-    <h2 class="title reveal">Saquen el celular.</h2>
+    <div class="illust sm reveal">
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="22" width="26" height="26" rx="4"/><rect x="54" y="22" width="26" height="26" rx="4"/><rect x="22" y="54" width="26" height="26" rx="4"/><rect x="54" y="54" width="26" height="26" rx="4"/></svg>
+    </div>
+    <h2 class="title reveal">Se arma así.</h2>
+    <ol class="formula stagger">
+      <li><span class="key">Portate como</span> <span class="val">un jefe de cuartel</span></li>
+      <li><span class="key">Necesito que</span> <span class="val">escribas un comunicado</span></li>
+      <li><span class="key">Es para</span> <span class="val">los bomberos del cuartel</span></li>
+      <li><span class="key">Que sea</span> <span class="val">corto y firme</span></li>
+    </ol>
+    <div class="tiny-note reveal">Las cuatro cositas, en una sola frase.</div>
+  </div>
+</section>
+
+<!-- ===== S15 · LES MUESTRO EN VIVO ===== -->
+<section class="slide content-slide">
+  <div class="slide-inner">
+    <h2 class="title reveal">Les muestro en vivo.</h2>
     <div class="illust reveal">
       <svg viewBox="0 0 100 100"><defs><linearGradient id="metaRing" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2DD4BF"/><stop offset=".45" stop-color="#3B82F6"/><stop offset="1" stop-color="#A855F7"/></linearGradient></defs><circle cx="50" cy="50" r="30" fill="none" stroke="url(#metaRing)" stroke-width="13"/></svg>
     </div>
-    <div class="tiny-note reveal">Tocá este círculo de colores</div>
+    <div class="tiny-note reveal">Este círculo de colores es la IA, dentro de WhatsApp.</div>
   </div>
 </section>
 
@@ -747,6 +766,37 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
       <div class="demo-ask reveal">«Portate como jefe de cuartel, escribime un comunicado avisando que el sábado hay capacitación obligatoria, firme pero respetuoso, cortito»</div>
       <div class="demo-answer reveal"><strong>Cuerpo Activo:</strong> Les informo que este <strong>sábado a las 9:00</strong> tenemos <strong>capacitación obligatoria</strong> en el cuartel. La presencia de todos es fundamental. Cuento con el compromiso de siempre.<br>— Jefe de Cuartel</div>
     </div>
+  </div>
+</section>
+
+<!-- ===== S17b · DOS SECRETOS ===== -->
+<section class="slide content-slide warm">
+  <div class="slide-inner">
+    <h2 class="title reveal">Dos secretos.</h2>
+    <div class="two-col stagger">
+      <div class="feature">
+        <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="50" r="30"/><circle cx="50" cy="50" r="15"/><circle cx="50" cy="50" r="3" fill="currentColor" stroke="none"/></svg></div>
+        <div class="label">Sé específico</div>
+        <div class="tiny-note">Cuanto más detalle, mejor sale.</div>
+      </div>
+      <div class="feature">
+        <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="50" r="32"/><line x1="50" y1="46" x2="50" y2="68"/><circle cx="50" cy="34" r="3" fill="currentColor" stroke="none"/></svg></div>
+        <div class="label">Dale contexto</div>
+        <div class="tiny-note">Contale para qué y para quién.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S17c · ANALOGÍA: LIMPIAR LA CASA ===== -->
+<section class="slide content-slide">
+  <div class="slide-inner">
+    <h2 class="title reveal">Es como mandar a limpiar la casa.</h2>
+    <div class="demo reveal" style="max-width:880px">
+      <div class="demo-ask">«Limpiá la casa»</div>
+      <div class="demo-answer"><span class="muted">Volvés… y la mesa sin tocar, los vidrios sucios, el piso a medias.</span></div>
+    </div>
+    <div class="lead reveal">¿La culpa? <span style="color:var(--red-600)">Tuya: no fuiste específico.</span></div>
   </div>
 </section>
 
