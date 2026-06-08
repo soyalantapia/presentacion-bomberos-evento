@@ -132,6 +132,8 @@ img { max-width:100%; max-height:min(50vh,420px); object-fit:contain; }
 @media (max-width:760px) {
     .two-col, .three-col, .four-col { grid-template-columns:1fr !important; }
     .qr-grid { grid-template-columns:1fr !important; }
+    .about-grid { grid-template-columns:1fr !important; }
+    .media-row { grid-template-columns:repeat(2,1fr) !important; }
 }
 
 /* =========================================================
@@ -401,6 +403,26 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 /* Muñequitos azules genéricos (NO marca) */
 .figuritas { display:flex; gap:0.4rem; flex-wrap:wrap; justify-content:center; align-items:flex-end; max-width:700px; }
 .figuritas svg { width:clamp(38px,6vh,64px); height:auto; }
+
+/* =========================================================
+   COMPONENTE: SOBRE MÍ (bio + foto + medios)
+   ========================================================= */
+.about-grid { display:grid; grid-template-columns:1.4fr 1fr; gap:var(--gap-lg); width:100%; align-items:center; text-align:left; }
+.about-text { display:flex; flex-direction:column; gap:var(--gap); }
+.about-text .body-text { max-width:none; }
+.about-text strong { color:var(--red-700); }
+.pills { display:flex; gap:0.5rem; flex-wrap:wrap; }
+.pill { font-size:var(--size-small); font-weight:700; color:var(--red-800); background:var(--red-100); padding:0.4em 0.95em; border-radius:999px; }
+.about-photo { display:flex; flex-direction:column; align-items:center; gap:0.6rem; margin:0; }
+.about-photo img { width:clamp(150px,28vh,260px); height:clamp(150px,28vh,260px); border-radius:50%; object-fit:cover; border:5px solid var(--red-600); }
+.about-cap { font-size:var(--size-small); font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); }
+.media-strip { display:flex; flex-direction:column; align-items:center; gap:0.7rem; width:100%; }
+.media-label { font-size:var(--size-small); font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--red-700); display:inline-flex; align-items:center; gap:0.6em; }
+.media-label::before, .media-label::after { content:""; width:2em; height:2px; background:var(--red-300, var(--red-500)); display:inline-block; opacity:.5; }
+.media-row { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--gap); width:100%; max-width:1050px; }
+.media-item { aspect-ratio:16/10; border-radius:12px; overflow:hidden; }
+.media-item img { width:100%; height:100%; object-fit:cover; display:block; }
+.media-ph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; border:3px dashed var(--line); border-radius:12px; color:var(--ink-soft); font-weight:700; font-size:var(--size-small); background:var(--paper-2); text-align:center; }
 </style>
 </head>
 <body>
@@ -430,6 +452,40 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
     <div class="placeholder reveal">LOGO DE LA FEDERACIÓN<br><span style="font-weight:400;font-size:0.8em;opacity:.85">(reemplazá este recuadro por el logo)</span></div>
     <h1 class="hero reveal">Inteligencia Artificial<br>para Bomberos</h1>
     <div class="by reveal">Alan Tapia</div>
+  </div>
+</section>
+
+<!-- ===== SOBRE MÍ · va de slide 2 (bio + foto + medios) ===== -->
+<!-- Para poner las 4 fotos de medios: dejá en assets/ los archivos medio-1.jpg … medio-4.jpg
+     (cuando existen aparecen solos; si no, se ve el recuadro "MEDIO N"). -->
+<section class="slide content-slide">
+  <div class="slide-inner" style="justify-content:center;gap:var(--gap-lg)">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="eyebrow reveal">Sobre mí</span>
+        <h2 class="title reveal">Bienvenidos.</h2>
+        <p class="body-text reveal">Soy <strong>Alan Tapia</strong>. Trabajo todos los días con <strong>inteligencia artificial</strong>, ayudando a bancos, empresas y emprendedores de la Argentina a usarla.</p>
+        <p class="body-text reveal">Doy capacitaciones, asesoro y dirijo <strong>Deenex</strong>, con <strong>+350 clientes</strong> en el país.</p>
+        <div class="pills reveal">
+          <span class="pill">Fundador de XNOD</span>
+          <span class="pill">Deenex · +350 clientes</span>
+          <span class="pill">Capacitador de IA</span>
+        </div>
+      </div>
+      <figure class="about-photo reveal">
+        <img src="assets/alan-tapia.jpg" alt="Alan Tapia">
+        <figcaption class="about-cap">Alan Tapia — Empresario</figcaption>
+      </figure>
+    </div>
+    <div class="media-strip reveal">
+      <span class="media-label">En los medios</span>
+      <div class="media-row">
+        <div class="media-item"><img src="assets/medio-1.jpg" alt="Alan Tapia en los medios (1)" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="media-ph" style="display:none">MEDIO 1</div></div>
+        <div class="media-item"><img src="assets/medio-2.jpg" alt="Alan Tapia en los medios (2)" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="media-ph" style="display:none">MEDIO 2</div></div>
+        <div class="media-item"><img src="assets/medio-3.jpg" alt="Alan Tapia en los medios (3)" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="media-ph" style="display:none">MEDIO 3</div></div>
+        <div class="media-item"><img src="assets/medio-4.jpg" alt="Alan Tapia en los medios (4)" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="media-ph" style="display:none">MEDIO 4</div></div>
+      </div>
+    </div>
   </div>
 </section>
 

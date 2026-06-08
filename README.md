@@ -38,6 +38,7 @@ Todo vive en un único archivo: **`index.html`**. No hay que compilar nada.
 | Qué | Dónde | Cómo |
 |---|---|---|
 | **Logo de la federación** (S1) | ancla `S01` | reemplazá el recuadro `<div class="placeholder">…</div>` por `<img src="assets/logo-federacion.png" alt="Federación" style="max-height:18vh">` y poné el archivo en `assets/`. |
+| **Fotos de medios** (slide 2 "Sobre mí") | `assets/` | dejá en `assets/` los archivos `medio-1.jpg` … `medio-4.jpg`. **Aparecen solos** cuando existen; mientras no estén se ve el recuadro "MEDIO N". Tu foto del retrato es `assets/alan-tapia.jpg`. |
 | **Contacto de Alan** (S29) | ancla `S29` | editá el bloque `.contact-lines` (nombre, rol y la línea de contacto). La foto es `assets/alan-tapia.jpg`. |
 | **Códigos QR** (S26) | `assets/qr-*.svg` | ya apuntan a `meta.ai`, `chatgpt.com` y `claude.ai`. Si querés otros destinos, regenerá los SVG (ver abajo) o reemplazá los archivos. |
 
