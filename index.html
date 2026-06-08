@@ -311,6 +311,10 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 .feature { display:flex; flex-direction:column; align-items:center; gap:0.6rem; }
 .feature .illust svg { width:clamp(70px,11vh,120px); }
 .feature .label { font-size:var(--size-h3); font-weight:700; color:var(--ink); }
+.feature-card { display:flex; flex-direction:column; align-items:center; gap:0.8rem; background:#fff; border-radius:22px; padding:clamp(1.4rem,3.5vh,2.4rem) clamp(1.2rem,2.5vw,2rem); box-shadow:0 6px 32px rgba(0,0,0,0.08); border-top:6px solid var(--red-600); text-align:center; }
+.feature-card .illust svg { width:clamp(80px,14vh,148px); }
+.feature-card .label { font-size:var(--size-h2); font-weight:900; color:var(--ink); line-height:1.1; }
+.feature-card .desc { font-size:var(--size-body); color:var(--ink-soft); line-height:1.4; max-width:26ch; }
 
 /* =========================================================
    COMPONENTE: MITO (falso → verdad)
@@ -545,17 +549,20 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
   <div class="slide-inner">
     <h2 class="title reveal">Tres cosas a su favor.</h2>
     <div class="three-col stagger">
-      <div class="feature">
+      <div class="feature-card">
         <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M50 28C42 22 30 22 22 24v50c8-2 20-2 28 4 8-6 20-6 28-4V24c-8-2-20-2-28 4z"/><line x1="50" y1="28" x2="50" y2="78"/></svg></div>
         <div class="label">Sabe de todo</div>
+        <div class="desc">Medicina, leyes, cocina, técnica. Preguntale lo que sea.</div>
       </div>
-      <div class="feature">
+      <div class="feature-card">
         <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="52" r="30"/><path d="M50 52V34"/><path d="M50 52l14 9"/><path d="M50 14v6"/></svg></div>
         <div class="label">Nunca se cansa</div>
+        <div class="desc">Disponible las 24 horas, los 365 días del año.</div>
       </div>
-      <div class="feature">
+      <div class="feature-card">
         <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 30h56a8 8 0 0 1 8 8v24a8 8 0 0 1-8 8H46l-16 14V70h-8a8 8 0 0 1-8-8V38a8 8 0 0 1 8-8z"/><line x1="36" y1="46" x2="64" y2="46"/><line x1="36" y1="58" x2="56" y2="58"/></svg></div>
         <div class="label">Habla tu idioma</div>
+        <div class="desc">Sin comandos ni claves. Escribís como le escribís a un amigo.</div>
       </div>
     </div>
   </div>
@@ -571,11 +578,19 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
       </svg>
     </div>
     <h2 class="title reveal">Por primera vez en <span class="accent">80 años</span>,<br>la tecnología habla <span class="accent">nuestro idioma</span>.</h2>
-    <div class="subtitle reveal" style="max-width:880px">Las computadoras existen desde <strong>1945</strong>. Antes les hablábamos en su idioma: botones, comandos, claves. Ahora ellas hablan el nuestro.</div>
+    <div class="subtitle reveal" style="max-width:880px">Antes les hablábamos en su idioma: botones, comandos, claves. Ahora ellas hablan el nuestro.</div>
   </div>
 </section>
 
-<!-- ===== S05 · LOS AÑOS ===== -->
+<!-- ===== S05 · PREGUNTA AL PÚBLICO ===== -->
+<section class="slide emphasis-slide">
+  <div class="slide-inner">
+    <h2 class="hero reveal" style="max-width:860px">¿Cuántos años piensan que tiene la inteligencia artificial?</h2>
+    <div class="subtitle reveal" style="color:rgba(255,255,255,0.65);margin-top:0.5rem">Tírenme un número.</div>
+  </div>
+</section>
+
+<!-- ===== S05b · RESPUESTA: 70 AÑOS ===== -->
 <section class="slide content-slide">
   <div class="slide-inner">
     <div class="illust sm reveal">
@@ -590,7 +605,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
       </svg>
     </div>
     <h2 class="title reveal">No es nueva.</h2>
-    <div class="reveal" style="font-size:var(--size-huge);font-weight:900;color:var(--red-600);line-height:0.95">+70</div>
+    <div class="reveal" style="font-size:var(--size-huge);font-weight:900;color:var(--red-600);line-height:0.95">70</div>
     <div class="lead reveal">años con nosotros</div>
   </div>
 </section>
