@@ -134,6 +134,9 @@ img { max-width:100%; max-height:min(50vh,420px); object-fit:contain; }
     .qr-grid { grid-template-columns:1fr !important; }
     .about-layout { grid-template-columns:1fr !important; }
     .chess-layout { grid-template-columns:1fr !important; }
+    .io-layout { flex-direction:column !important; }
+    .io-card { max-width:none !important; width:100%; }
+    .io-arrow { transform:rotate(90deg); }
     .media-row { grid-template-columns:repeat(2,1fr) !important; }
 }
 
@@ -337,6 +340,21 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 .age-line { display:flex; align-items:baseline; gap:0.55rem; }
 .age-line .num { font-size:clamp(3.5rem,11vh,7rem); font-weight:900; color:var(--red-600); line-height:0.9; }
 .age-line .unit { font-size:var(--size-h3); font-weight:700; color:var(--ink-soft); }
+
+/* =========================================================
+   COMPONENTE: DEMO prompt → salida (dos fotos)
+   ========================================================= */
+.io-layout { display:flex; align-items:center; justify-content:center; gap:clamp(0.8rem,2.5vw,2.2rem); width:100%; }
+.io-card { display:flex; flex-direction:column; gap:0.7rem; flex:1 1 0; min-width:0; max-width:clamp(360px,42vw,560px); }
+.io-tag { display:inline-flex; align-items:center; gap:0.5em; align-self:flex-start; font-size:var(--size-small); font-weight:800; letter-spacing:0.02em; padding:0.35em 0.85em; border-radius:999px; }
+.io-tag.prompt { color:var(--ink-soft); background:var(--paper-2); border:2px solid var(--line); }
+.io-tag.out    { color:#fff; background:var(--red-600); }
+.io-frame { position:relative; border-radius:16px; overflow:hidden; background:var(--paper-2); border:6px solid #fff; box-shadow:0 16px 48px rgba(0,0,0,0.22); aspect-ratio:16/10; }
+.io-frame img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; }
+.io-ph { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.4rem; border:3px dashed var(--line); color:var(--ink-soft); font-weight:800; font-size:var(--size-body); text-align:center; padding:1rem; }
+.io-ph small { font-weight:600; opacity:0.7; font-size:0.78em; }
+.io-arrow { flex:none; color:var(--red-600); display:flex; align-items:center; justify-content:center; }
+.io-arrow svg { width:clamp(34px,4vw,58px); height:auto; }
 
 /* =========================================================
    COMPONENTE: MITO (falso → verdad)
@@ -795,6 +813,33 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
   </div>
 </section>
 
+<!-- ===== DEMO: prompt → salida (dos fotos) ===== -->
+<section class="slide content-slide">
+  <div class="slide-inner">
+    <h2 class="title reveal">Esto pedí... <span class="accent">y esto me dio.</span></h2>
+    <div class="io-layout stagger">
+      <figure class="io-card" style="margin:0">
+        <span class="io-tag prompt">Lo que escribí</span>
+        <div class="io-frame">
+          <img src="assets/demo-prompt.jpg" alt="El pedido escrito en el chat" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="io-ph" style="display:none">FOTO DEL PEDIDO<br><small>assets/demo-prompt.jpg</small></div>
+        </div>
+      </figure>
+      <div class="io-arrow reveal">
+        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><line x1="14" y1="50" x2="80" y2="50"/><polyline points="56,26 84,50 56,74"/></svg>
+      </div>
+      <figure class="io-card" style="margin:0">
+        <span class="io-tag out">Lo que respondió</span>
+        <div class="io-frame">
+          <img src="assets/demo-salida.jpg" alt="La respuesta que generó la IA" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="io-ph" style="display:none">FOTO DE LA SALIDA<br><small>assets/demo-salida.jpg</small></div>
+        </div>
+      </figure>
+    </div>
+    <div class="tiny-note reveal">En segundos. Sin saber nada de computación.</div>
+  </div>
+</section>
+
 <!-- ===== TRES SECRETOS (tips para pedir bien) ===== -->
 <section class="slide content-slide warm">
   <div class="slide-inner">
@@ -828,6 +873,19 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
       <div class="demo-answer"><span class="muted">Volvés… y la mesa sin tocar, los vidrios sucios, el piso a medias.</span></div>
     </div>
     <div class="lead reveal">¿La culpa? <span style="color:var(--red-600)">Tuya: no fuiste específico.</span></div>
+  </div>
+</section>
+
+<!-- ===== ANALOGÍA: LIMPIAR LA CASA (bien) ===== -->
+<section class="slide content-slide">
+  <div class="slide-inner">
+    <h2 class="title reveal">Ahora pedilo <span class="accent">bien.</span></h2>
+    <div class="demo good-wrap">
+      <div class="demo-tag good reveal">Así sí</div>
+      <div class="demo-ask reveal">«Limpiá la cocina y el comedor: lavá los platos, pasá un trapo a la mesa y las mesadas, barré y baldeá el piso. Que quede listo antes de las 8 que viene gente.»</div>
+      <div class="demo-answer reveal">Volvés… y está <strong>todo hecho</strong>: los platos guardados, la mesa reluciente, el piso impecable. <span class="muted">Tal cual lo pediste.</span></div>
+    </div>
+    <div class="lead reveal">La diferencia no es la IA. <span style="color:var(--red-600)">Es cómo lo pedís.</span></div>
   </div>
 </section>
 
