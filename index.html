@@ -311,10 +311,11 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 .feature { display:flex; flex-direction:column; align-items:center; gap:0.6rem; }
 .feature .illust svg { width:clamp(70px,11vh,120px); }
 .feature .label { font-size:var(--size-h3); font-weight:700; color:var(--ink); }
-.feature-card { display:flex; flex-direction:column; align-items:center; gap:0.8rem; background:#fff; border-radius:22px; padding:clamp(1.4rem,3.5vh,2.4rem) clamp(1.2rem,2.5vw,2rem); box-shadow:0 6px 32px rgba(0,0,0,0.08); border-top:6px solid var(--red-600); text-align:center; }
-.feature-card .illust svg { width:clamp(80px,14vh,148px); }
-.feature-card .label { font-size:var(--size-h2); font-weight:900; color:var(--ink); line-height:1.1; }
-.feature-card .desc { font-size:var(--size-body); color:var(--ink-soft); line-height:1.4; max-width:26ch; }
+.feature-card { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:clamp(0.9rem,2vh,1.5rem); background:#fff; border-radius:26px; padding:clamp(1.8rem,4.5vh,3rem) clamp(1.4rem,2.5vw,2.2rem); box-shadow:0 10px 44px rgba(180,30,30,0.12); border-top:8px solid var(--red-600); text-align:center; min-height:clamp(320px,58vh,460px); }
+.feature-card .illust { width:clamp(110px,17vh,160px); height:clamp(110px,17vh,160px); border-radius:50%; background:var(--red-100); display:flex; align-items:center; justify-content:center; flex:none; }
+.feature-card .illust svg { width:clamp(58px,9vh,86px); height:auto; color:var(--red-600); }
+.feature-card .label { font-size:var(--size-h1, var(--size-h2)); font-weight:900; color:var(--ink); line-height:1.05; }
+.feature-card .desc { font-size:var(--size-h3); color:var(--ink-soft); line-height:1.35; max-width:24ch; }
 
 /* =========================================================
    COMPONENTE: MITO (falso → verdad)
