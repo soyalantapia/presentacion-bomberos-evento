@@ -329,8 +329,9 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 
 /* Slide "No es nueva" (foto del ajedrecista + dato) */
 .chess-layout { display:grid; grid-template-columns:1fr 1fr; gap:var(--gap-lg); width:100%; align-items:center; text-align:left; }
-.chess-photo { margin:0; border-radius:18px; overflow:hidden; box-shadow:0 16px 48px rgba(0,0,0,0.22); border:6px solid #fff; aspect-ratio:4/3; }
+.chess-photo { position:relative; margin:0; border-radius:18px; overflow:hidden; box-shadow:0 16px 48px rgba(0,0,0,0.22); border:6px solid #fff; aspect-ratio:4/3; }
 .chess-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+.chess-cap { position:absolute; left:0; right:0; bottom:0; padding:0.9em 1em 0.55em; font-size:var(--size-small); font-weight:700; color:#fff; text-align:center; background:linear-gradient(to top, rgba(0,0,0,0.78), rgba(0,0,0,0)); letter-spacing:0.02em; }
 .chess-ph { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.3rem; background:var(--paper-2); border:3px dashed var(--line); color:var(--ink-soft); font-weight:800; font-size:var(--size-h3); text-align:center; }
 .chess-text { display:flex; flex-direction:column; gap:clamp(0.7rem,2vh,1.3rem); }
 .age-line { display:flex; align-items:baseline; gap:0.55rem; }
@@ -606,12 +607,13 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
   <div class="slide-inner">
     <div class="chess-layout">
       <figure class="chess-photo reveal">
-        <img src="assets/ajedrez.jpg" alt="Una computadora jugando al ajedrez contra el campeón mundial, 1997" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img src="assets/ajedrez.jpg" alt="Garry Kasparov jugando al ajedrez contra la computadora Deep Blue de IBM, 1997" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <figcaption class="chess-cap">1997 · Kasparov vs. Deep Blue (IBM)</figcaption>
         <div class="chess-ph" style="display:none">FOTO DEL AJEDRECISTA<br><small>assets/ajedrez.jpg</small></div>
       </figure>
       <div class="chess-text">
         <h2 class="title reveal">No es nueva.</h2>
-        <p class="body-text reveal">En <strong>1997</strong>, una computadora ya le ganaba al <strong>campeón mundial de ajedrez</strong>.</p>
+        <p class="body-text reveal">En <strong>1997</strong>, la computadora <strong>Deep Blue</strong> le ganó a Kasparov, el <strong>mejor ajedrecista del mundo</strong>.</p>
         <div class="age-line reveal"><span class="num">70</span><span class="unit">años con nosotros</span></div>
       </div>
     </div>
