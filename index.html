@@ -418,6 +418,35 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 .secret .tiny-note { max-width:17rem; }
 
 /* =========================================================
+   COMPONENTE: ¿POR QUÉ ESTOY ACÁ? (3 razones / manifiesto)
+   ========================================================= */
+.reasons { list-style:none; display:flex; flex-direction:column; gap:clamp(0.8rem,2.2vh,1.5rem); width:100%; max-width:1060px; text-align:left; }
+.reason {
+    display:flex; align-items:center; gap:clamp(1rem,2.2vw,1.9rem);
+    background:#fff; border-radius:22px; border-left:9px solid var(--red-600);
+    padding:clamp(0.9rem,2.4vh,1.7rem) clamp(1.2rem,2.6vw,2.2rem);
+    box-shadow:0 10px 34px rgba(180,30,30,0.10);
+}
+.reason .r-emoji {
+    flex:none; position:relative;
+    width:clamp(2.8em,7.5vh,3.6em); height:clamp(2.8em,7.5vh,3.6em);
+    border-radius:50%; background:var(--red-50);
+    display:flex; align-items:center; justify-content:center;
+    font-size:clamp(1.7rem,4vh,2.6rem); line-height:1;
+}
+.reason .r-num {
+    position:absolute; top:-8px; left:-8px;
+    width:1.7em; height:1.7em; border-radius:50%;
+    background:var(--red-600); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:900; font-size:0.62em; line-height:1;
+    box-shadow:0 3px 8px rgba(0,0,0,0.22); border:2.5px solid #fff;
+}
+.reason .r-body { display:flex; flex-direction:column; gap:0.12em; }
+.reason .r-head { font-size:var(--size-h2); font-weight:900; color:var(--ink); line-height:1.08; }
+.reason .r-sub { font-size:var(--size-h3); font-weight:500; font-style:italic; color:var(--red-600); line-height:1.25; }
+
+/* =========================================================
    COMPONENTE: INICIATIVA GRUPO WHATSAPP (cierre / pitch)
    ========================================================= */
 .brand-lockup { display:inline-flex; align-items:center; gap:clamp(0.8rem,1.6vw,1.4rem); }
@@ -549,6 +578,36 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
   </div>
 </section>
 
+<!-- ===== ¿POR QUÉ ESTOY ACÁ? (3 razones) ===== -->
+<section class="slide content-slide warm">
+  <div class="slide-inner">
+    <h2 class="title reveal">¿Por qué estoy <span class="accent">acá</span>?</h2>
+    <ol class="reasons stagger">
+      <li class="reason">
+        <div class="r-emoji">🚀<span class="r-num">1</span></div>
+        <div class="r-body">
+          <div class="r-head">Es un gran momento.</div>
+          <div class="r-sub">Y están justo a tiempo.</div>
+        </div>
+      </li>
+      <li class="reason">
+        <div class="r-emoji">📱<span class="r-num">2</span></div>
+        <div class="r-body">
+          <div class="r-head">No hay que ser experto.</div>
+          <div class="r-sub">Si manejás el teléfono, podés.</div>
+        </div>
+      </li>
+      <li class="reason">
+        <div class="r-emoji">💪<span class="r-num">3</span></div>
+        <div class="r-body">
+          <div class="r-head">Los hace más fuertes.</div>
+          <div class="r-sub">Más tiempo para lo que importa.</div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
 <!-- ===== S02 · ¿QUIÉN YA LA USÓ? ===== -->
 <section class="slide content-slide">
   <div class="slide-inner">
@@ -631,7 +690,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
       </figure>
       <div class="chess-text">
         <h2 class="title reveal">No es nueva.</h2>
-        <p class="body-text reveal">En <strong>1997</strong>, la computadora <strong>Deep Blue</strong> le ganó a Kasparov, el <strong>mejor ajedrecista del mundo</strong>.</p>
+        <p class="body-text reveal">La idea nació en <strong>1956</strong>. Y para <strong>1997</strong> ya le ganaba al ajedrez al <strong>mejor del mundo</strong>.</p>
         <div class="age-line reveal"><span class="num">70</span><span class="unit">años con nosotros</span></div>
       </div>
     </div>
@@ -664,9 +723,9 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
     <div class="mito">
       <div class="mito-false reveal">Me va a reemplazar</div>
       <div class="arrow-down reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg></div>
-      <div class="mito-true reveal">El papeleo lo hace la máquina.<br><span class="accent">Al fuego entrás vos.</span></div>
+      <div class="mito-true reveal">Es una herramienta más.<br><span class="accent">Como la autobomba.</span></div>
     </div>
-    <div class="tiny-note reveal">Te saca lo aburrido, no a vos.</div>
+    <div class="tiny-note reveal">La máquina la manejás vos.</div>
   </div>
 </section>
 
@@ -699,7 +758,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
     <div class="mito">
       <div class="mito-false reveal">Es cara</div>
       <div class="arrow-down reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg></div>
-      <div class="mito-true reveal">Es <span class="accent">gratis</span>.</div>
+      <div class="mito-true reveal">Existen <span class="accent">opciones gratuitas</span>.</div>
     </div>
   </div>
 </section>
@@ -741,16 +800,16 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <section class="slide content-slide warm">
   <div class="slide-inner">
     <h2 class="title reveal">¿Cómo sabe tanto?</h2>
-    <div class="figuritas reveal">
-      <svg viewBox="0 0 40 60" fill="#3B82F6"><circle cx="20" cy="14" r="11"/><path d="M6 56c0-12 6-20 14-20s14 8 14 20z"/></svg>
-      <svg viewBox="0 0 40 60" fill="#2563EB"><circle cx="20" cy="14" r="11"/><path d="M6 56c0-12 6-20 14-20s14 8 14 20z"/></svg>
-      <svg viewBox="0 0 40 60" fill="#3B82F6"><circle cx="20" cy="14" r="11"/><path d="M6 56c0-12 6-20 14-20s14 8 14 20z"/></svg>
-      <svg viewBox="0 0 40 60" fill="#1D4ED8"><circle cx="20" cy="14" r="11"/><path d="M6 56c0-12 6-20 14-20s14 8 14 20z"/></svg>
-      <svg viewBox="0 0 40 60" fill="#3B82F6"><circle cx="20" cy="14" r="11"/><path d="M6 56c0-12 6-20 14-20s14 8 14 20z"/></svg>
-      <svg viewBox="0 0 40 60" fill="#2563EB"><circle cx="20" cy="14" r="11"/><path d="M6 56c0-12 6-20 14-20s14 8 14 20z"/></svg>
-      <svg viewBox="0 0 40 60" fill="#3B82F6"><circle cx="20" cy="14" r="11"/><path d="M6 56c0-12 6-20 14-20s14 8 14 20z"/></svg>
+    <div class="illust reveal">
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="20" y="62" width="60" height="15" rx="3"/>
+        <rect x="25" y="44" width="50" height="15" rx="3"/>
+        <rect x="18" y="26" width="56" height="15" rx="3"/>
+        <line x1="34" y1="26" x2="34" y2="41"/><line x1="39" y1="62" x2="39" y2="77"/>
+      </svg>
     </div>
-    <div class="body-text reveal" style="max-width:780px">Imaginate una aldea enorme que ya leyó <strong>todo</strong>, y entre todos te arman la respuesta masticada.</div>
+    <div class="body-text reveal" style="max-width:880px">Se leyó <strong>casi todo lo que se escribió</strong>: libros, manuales, enciclopedias, diarios. Millones. Y no se olvida de nada.</div>
+    <div class="tiny-note reveal">Como el bibliotecario más sabio del mundo, en tu teléfono.</div>
   </div>
 </section>
 
@@ -914,7 +973,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <!-- ===== S18 · LAS HERRAMIENTAS ===== -->
 <section class="slide content-slide warm">
   <div class="slide-inner">
-    <h2 class="title reveal">Todas gratis.</h2>
+    <h2 class="title reveal">Con <span class="accent">versiones gratis</span>.</h2>
     <div class="tool-tiles stagger">
       <div class="tool-tile">
         <div class="badge" style="background:#25D366"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></div>
@@ -937,14 +996,25 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
      BLOQUE 3 · Aplicar en el cuartel
      ============================================================ -->
 
-<!-- ===== S19 · LA PREGUNTA QUE PINCHA ===== -->
-<section class="slide emphasis-slide">
+<!-- ===== INTRO SECCIÓN · APLICARLO EN EL CUARTEL ===== -->
+<section class="slide content-slide">
   <div class="slide-inner">
-    <p class="emphasis-phrase reveal">¿Cuánta plata tiene tu cuartel <span class="accent">ahora mismo</span>?</p>
+    <div class="illust reveal">
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 82V42l32-22 32 22v40"/>
+        <line x1="12" y1="82" x2="88" y2="82"/>
+        <rect x="42" y="58" width="16" height="24"/>
+        <line x1="30" y1="46" x2="40" y2="46"/><line x1="60" y1="46" x2="70" y2="46"/>
+        <line x1="50" y1="20" x2="50" y2="10"/><path d="M50 11l12 4-12 4z" fill="currentColor" stroke="none"/>
+      </svg>
+    </div>
+    <span class="eyebrow reveal">Manos a la obra</span>
+    <h2 class="title reveal">¿Cómo lo usamos<br>en el <span class="accent">cuartel</span>?</h2>
+    <div class="subtitle reveal" style="max-width:820px">Casos reales, del día a día.</div>
   </div>
 </section>
 
-<!-- ===== S20 · LA PLATA ===== -->
+<!-- ===== CASO 1 · LA PLATA DEL CUARTEL ===== -->
 <section class="slide content-slide">
   <div class="slide-inner">
     <div class="illust sm reveal">
@@ -953,11 +1023,8 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
         <g fill="currentColor" stroke="none"><circle cx="38" cy="52" r="3.5"/><circle cx="50" cy="52" r="3.5"/><circle cx="62" cy="52" r="3.5"/><circle cx="38" cy="64" r="3.5"/><circle cx="50" cy="64" r="3.5"/><circle cx="62" cy="64" r="3.5"/><circle cx="38" cy="76" r="3.5"/><circle cx="50" cy="76" r="3.5"/><circle cx="62" cy="76" r="3.5"/></g>
       </svg>
     </div>
-    <div class="reveal" style="display:flex;flex-direction:column;gap:0.5em">
-      <div class="lead">¿Cuánto gasté?</div>
-      <div class="lead">¿Me alcanza?</div>
-      <div class="lead">¿Cuándo vence el subsidio?</div>
-    </div>
+    <h2 class="title reveal">¿Cuánta plata tiene tu cuartel <span class="accent">ahora mismo</span>?</h2>
+    <div class="subtitle reveal" style="max-width:920px">«¿Cuánto gasté?» · «¿Me alcanza?» · «¿Cuándo vence el subsidio?»</div>
     <div class="tiny-note reveal">Vos le das la info; ella la ordena.</div>
   </div>
 </section>
@@ -1078,7 +1145,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <section class="slide content-slide warm">
   <div class="slide-inner">
     <span class="eyebrow reveal">Lo que vas a recibir</span>
-    <h2 class="title reveal">Un consejo de tecnología,<br><span class="accent">toda la semana</span>.</h2>
+    <h2 class="title reveal">Un consejo de tecnología,<br><span class="accent">todas las semanas</span>.</h2>
     <div class="init-points stagger">
       <div class="init-point">
         <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M50 20a22 22 0 0 0-13 39c3 2 5 5 5 9h16c0-4 2-7 5-9a22 22 0 0 0-13-39z"/><line x1="42" y1="80" x2="58" y2="80"/><line x1="45" y1="87" x2="55" y2="87"/></svg></div>
