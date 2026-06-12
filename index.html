@@ -28,6 +28,7 @@
     --red-700:#B91C1C;   /* rojo para texto sobre blanco (AA) */
     --red-600:#DC2626;   /* rojo principal / acento */
     --red-500:#EF4444;
+    --red-400:#F87171;   /* rojo claro: acento sobre fondo oscuro (AA) */
     --red-100:#FEE2E2;
     --red-50:#FEF2F2;
 
@@ -52,7 +53,7 @@
     --size-h2:     clamp(1.6rem, 3.5vw, 2.8rem);
     --size-h3:     clamp(1.3rem, 2.4vw, 2rem);
     --size-body:   clamp(1.15rem, 1.8vw, 1.6rem);
-    --size-small:  clamp(1rem, 1.4vw, 1.3rem);
+    --size-small:  clamp(1.2rem, 1.7vw, 1.45rem);
     --size-tiny:   clamp(0.8rem, 1vw, 1rem);
 
     /* Espaciado */
@@ -96,6 +97,7 @@ body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
     display:flex;
     flex-direction:column;
     justify-content:center;
+    justify-content:safe center;
     align-items:center;
     text-align:center;
     max-height:100%;
@@ -122,6 +124,7 @@ img { max-width:100%; max-height:min(50vh,420px); object-fit:contain; }
     :root {
         --slide-padding:clamp(1.25rem, 3.5vw, 3rem);
         --size-title:clamp(1.9rem, 4.5vw, 3.5rem);
+        --size-h3:clamp(1.2rem, 2vw, 1.7rem);
         --size-huge:clamp(3rem, 9vw, 7rem);
     }
 }
@@ -138,6 +141,7 @@ img { max-width:100%; max-height:min(50vh,420px); object-fit:contain; }
     .io-card { max-width:none !important; width:100%; }
     .io-arrow { transform:rotate(90deg); }
     .media-row { grid-template-columns:repeat(2,1fr) !important; }
+    br.desk { display:none; }
 }
 
 /* =========================================================
@@ -154,13 +158,18 @@ img { max-width:100%; max-height:min(50vh,420px); object-fit:contain; }
     transform:translateY(-50%);
     display:flex; flex-direction:column; gap:0.45rem; z-index:50;
 }
+.nav-dots { gap:0.15rem; }
 .nav-dots button {
-    width:9px; height:9px; border-radius:50%; border:none;
-    background:rgba(185,28,28,0.25); cursor:pointer; padding:0;
-    transition:all 0.3s var(--ease);
+    width:18px; height:18px; border-radius:50%; border:none;
+    background:transparent; cursor:pointer; padding:0;
+    display:flex; align-items:center; justify-content:center;
 }
-.nav-dots button.active { background:var(--red-600); transform:scale(1.7); }
-.nav-dots button:hover { background:var(--red-600); }
+.nav-dots button::before {
+    content:""; width:9px; height:9px; border-radius:50%;
+    background:rgba(185,28,28,0.25); transition:all 0.3s var(--ease);
+}
+.nav-dots button.active::before { background:var(--red-600); transform:scale(1.7); }
+.nav-dots button:hover::before { background:var(--red-600); }
 
 /* Flechas grandes (mouse / pantalla táctil / clicker) */
 .nav-arrow {
@@ -177,15 +186,21 @@ img { max-width:100%; max-height:min(50vh,420px); object-fit:contain; }
 .nav-arrow.prev { left:clamp(1rem,3vw,2rem); }
 .nav-arrow.next { right:clamp(1rem,3vw,2rem); }
 .nav-arrow { display:none; }
+@media (pointer:coarse) { .nav-arrow { display:flex; } }
 .nav-arrow[disabled] { opacity:0; pointer-events:none; }
 
-.keyboard-hint { display:none; }
-body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
+.keyboard-hint {
+    position:fixed; bottom:clamp(1rem,3vh,2rem); left:50%; transform:translateX(-50%);
+    font-size:var(--size-small); font-weight:600; color:#fff;
+    background:rgba(0,0,0,0.45); padding:0.5em 1.1em; border-radius:999px;
+    opacity:0; transition:opacity .4s var(--ease); pointer-events:none; z-index:60;
+}
+body.at-start .keyboard-hint { opacity:0.9; }
 
 .slide-number {
     position:absolute; bottom:clamp(0.75rem,2vh,1.5rem); right:clamp(1.25rem,3vw,2.5rem);
     font-size:var(--size-tiny); font-weight:600; letter-spacing:0.1em;
-    color:var(--ink-soft); opacity:0.55; font-variant-numeric:tabular-nums;
+    color:var(--ink-soft); opacity:0.8; font-variant-numeric:tabular-nums;
 }
 .block-slide .slide-number,
 .emphasis-slide .slide-number,
@@ -228,7 +243,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 .lead { font-size:var(--size-h2); font-weight:700; line-height:1.2; color:var(--ink); }
 .subtitle { font-size:var(--size-h3); font-weight:400; color:var(--ink-soft); line-height:1.4; }
 .body-text { font-size:var(--size-body); font-weight:400; line-height:1.55; color:var(--ink); }
-.tiny-note { font-size:var(--size-small); color:var(--ink-soft); font-weight:500; }
+.tiny-note { font-size:var(--size-body); color:var(--ink-soft); font-weight:600; }
 
 /* =========================================================
    ILUSTRACIÓN (SVG grande y nítido)
@@ -268,8 +283,8 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
     background:radial-gradient(ellipse at 50% 45%, rgba(220,38,38,0.22) 0%, transparent 70%);
 }
 .emphasis-slide .slide-inner { position:relative; z-index:1; }
-.emphasis-phrase { font-size:var(--size-hero); font-weight:800; line-height:1.12; letter-spacing:-0.02em; }
-.emphasis-phrase .accent { color:var(--red-500); }
+.emphasis-phrase { font-size:var(--size-hero); font-weight:800; line-height:1.12; letter-spacing:0; }
+.emphasis-phrase .accent { color:var(--red-400); }
 .emphasis-footnote { font-size:clamp(1.1rem,1.8vw,1.5rem); font-weight:400; opacity:0.75; }
 
 /* =========================================================
@@ -283,7 +298,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 }
 .title-slide .slide-inner { position:relative; z-index:1; gap:var(--gap-lg); }
 .title-slide .hero { font-size:var(--size-hero); font-weight:900; line-height:1.04; letter-spacing:-0.03em; }
-.title-slide .by { font-size:var(--size-h3); font-weight:500; opacity:0.9; }
+.title-slide .by { font-size:var(--size-h3); font-weight:600; opacity:0.9; }
 
 /* Placeholder editable (logo federación / QR) */
 .placeholder {
@@ -299,11 +314,6 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
    ========================================================= */
 .thanks-slide { background:linear-gradient(140deg, var(--charcoal) 0%, #2b1414 100%); color:#fff; }
 .thanks-slide .slide-inner { gap:var(--gap-lg); }
-.contact-card { display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; justify-content:center; }
-.contact-card img { width:clamp(90px,12vh,130px); height:clamp(90px,12vh,130px); border-radius:50%; object-fit:cover; border:4px solid var(--red-600); }
-.contact-lines { text-align:left; }
-.contact-lines .name { font-size:var(--size-h2); font-weight:800; }
-.contact-lines .data { font-size:var(--size-body); opacity:0.85; }
 
 /* =========================================================
    GRILLAS / UTILIDADES
@@ -365,8 +375,8 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
     text-decoration:line-through; text-decoration-color:var(--red-500);
     text-decoration-thickness:0.08em;
 }
-.mito-false::before { content:"« "; }
-.mito-false::after  { content:" »"; }
+.mito-false::before { content:"«"; }
+.mito-false::after  { content:"»"; }
 .arrow-down { color:var(--red-600); }
 .arrow-down svg { width:clamp(34px,5vh,56px); height:auto; }
 .mito-true { font-size:var(--size-title); font-weight:800; color:var(--ink); line-height:1.15; }
@@ -375,9 +385,9 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 /* =========================================================
    COMPONENTE: DEMO (pedir mal / pedir bien) — única slide con más texto
    ========================================================= */
-.demo { display:flex; flex-direction:column; gap:var(--gap); width:100%; max-width:1000px; text-align:left; }
+.demo { display:flex; flex-direction:column; gap:var(--gap); width:100%; max-width:880px; text-align:left; }
 .demo-tag {
-    align-self:flex-start; font-size:var(--size-small); font-weight:800; letter-spacing:0.08em;
+    align-self:flex-start; font-size:var(--size-h3); font-weight:800; letter-spacing:0.08em;
     text-transform:uppercase; padding:0.3em 0.9em; border-radius:999px;
 }
 .demo-tag.bad  { background:var(--paper-3); color:var(--ink-soft); }
@@ -444,7 +454,8 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 }
 .reason .r-body { display:flex; flex-direction:column; gap:0.12em; }
 .reason .r-head { font-size:var(--size-h2); font-weight:900; color:var(--ink); line-height:1.08; }
-.reason .r-sub { font-size:var(--size-h3); font-weight:500; font-style:italic; color:var(--red-600); line-height:1.25; }
+.reason .r-sub { font-size:var(--size-h3); font-weight:600; font-style:italic; color:var(--red-700); line-height:1.25; }
+.reason .r-emoji svg { width:60%; height:60%; color:var(--red-600); }
 
 /* =========================================================
    COMPONENTE: INICIATIVA GRUPO WHATSAPP (cierre / pitch)
@@ -461,6 +472,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 .init-point .label { font-size:var(--size-h3); font-weight:800; color:var(--ink); }
 .init-point .tiny-note { max-width:16rem; }
 .qr-join img { width:clamp(140px,24vh,210px); height:auto; background:#fff; border:2px solid var(--line); border-radius:14px; padding:10px; display:block; }
+.qr-join.lg img { width:clamp(220px,36vh,320px); border:3px solid var(--red-600); border-radius:18px; box-shadow:0 10px 36px rgba(180,30,30,0.18); }
 .grupo-grid { display:grid; grid-template-columns:1fr auto; gap:var(--gap-lg); align-items:center; width:100%; text-align:left; }
 .grupo-grid .qr-join img { width:clamp(220px,40vh,340px); border:3px solid var(--red-600); border-radius:18px; box-shadow:0 10px 36px rgba(180,30,30,0.18); }
 .grupo-text .subtitle { margin-top:0.5rem; }
@@ -493,7 +505,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 .qr-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap-lg); width:100%; max-width:1000px; }
 .qr-card { display:flex; flex-direction:column; align-items:center; gap:0.75rem; }
 .qr-card img, .qr-ph {
-    width:clamp(130px,22vh,210px); height:clamp(130px,22vh,210px);
+    width:clamp(150px,28vh,260px); height:clamp(150px,28vh,260px);
     border-radius:14px; background:#fff; border:2px solid var(--line);
     display:flex; align-items:center; justify-content:center; padding:8px;
 }
@@ -507,26 +519,37 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 .cam-steps .step { display:inline-flex; align-items:center; gap:0.45rem; }
 .cam-steps .sep { color:var(--red-600); font-weight:900; }
 
-/* Muñequitos azules genéricos (NO marca) */
-.figuritas { display:flex; gap:0.4rem; flex-wrap:wrap; justify-content:center; align-items:flex-end; max-width:700px; }
-.figuritas svg { width:clamp(38px,6vh,64px); height:auto; }
-
 /* =========================================================
    COMPONENTE: SOBRE MÍ (bio + fotos solapadas)
    ========================================================= */
 .about-layout { display:grid; grid-template-columns:1.2fr 1fr; gap:var(--gap-lg); width:100%; align-items:center; text-align:left; }
 .about-text { display:flex; flex-direction:column; gap:clamp(0.7rem,2vh,1.3rem); }
 .about-text strong { color:var(--red-700); font-weight:700; }
-.about-role { font-size:var(--size-h3); font-weight:600; line-height:1.3; color:var(--red-600); letter-spacing:0.01em; }
+.about-role { font-size:var(--size-h3); font-weight:600; line-height:1.3; color:var(--red-700); letter-spacing:0.01em; }
 .about-bio { font-size:var(--size-body); font-weight:400; line-height:1.55; color:var(--ink); max-width:42ch; }
-.photo-fan { position:relative; width:clamp(300px,38vw,490px); height:clamp(280px,46vh,400px); flex:none; }
-.pf-item { position:absolute; width:clamp(155px,16vw,220px); aspect-ratio:4/3; border-radius:14px; overflow:hidden; border:5px solid #fff; box-shadow:0 10px 36px rgba(0,0,0,0.28); }
+.photo-fan { position:relative; width:clamp(300px,38vw,490px); height:clamp(260px,40vh,360px); flex:none; }
+.pf-item { position:absolute; width:clamp(175px,19vw,250px); aspect-ratio:4/3; border-radius:14px; overflow:hidden; border:5px solid #fff; box-shadow:0 10px 36px rgba(0,0,0,0.28); }
 .pf-item img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; }
 .pf-item:nth-child(1) { top:0;    left:0;    transform:rotate(-7deg); z-index:1; }
 .pf-item:nth-child(2) { top:10px; right:0;   transform:rotate( 6deg); z-index:2; }
 .pf-item:nth-child(3) { bottom:0; left:25px; transform:rotate( 5deg); z-index:3; }
 .pf-item:nth-child(4) { bottom:5px; right:15px; transform:rotate(-8deg); z-index:4; }
+
+/* =========================================================
+   IMPRESIÓN / EXPORT A PDF (Cmd+P con "Gráficos de fondo")
+   ========================================================= */
+@media print {
+    @page { size:297mm 167mm; margin:0; }
+    html { scroll-snap-type:none; }
+    .slide { height:auto; min-height:100vh; break-after:page; page-break-after:always; }
+    .progress-bar, .nav-dots, .nav-arrow, .keyboard-hint { display:none !important; }
+    .reveal, .stagger > * { opacity:1 !important; transform:none !important; transition:none !important; }
+    body, .slide { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}
 </style>
+<link rel="preload" href="assets/fonts/poppins-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>
+<noscript><style>.reveal,.stagger>*{opacity:1;transform:none}</style></noscript>
 </head>
 <body>
 
@@ -534,10 +557,10 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <nav class="nav-dots" id="navDots" aria-label="Navegación entre slides"></nav>
 
 <button class="nav-arrow prev" id="navPrev" aria-label="Slide anterior">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
 </button>
 <button class="nav-arrow next" id="navNext" aria-label="Slide siguiente">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
 </button>
 
 <div class="keyboard-hint">Usá las flechas → para avanzar</div>
@@ -551,7 +574,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <!-- ===== S01 · PORTADA ===== -->
 <section class="slide title-slide">
   <div class="slide-inner">
-    <img src="assets/logo-federacion.png" alt="Federación de Asociaciones de Bomberos Voluntarios — Provincia de Buenos Aires" class="reveal" style="max-height:18vh;object-fit:contain;background:#fff;border-radius:50%;padding:clamp(6px,1vh,12px)">
+    <img src="assets/logo-federacion.jpg" alt="Federación de Asociaciones de Bomberos Voluntarios de la Provincia de Buenos Aires" class="reveal" style="max-height:18vh;object-fit:contain;background:#fff;border-radius:50%;padding:clamp(6px,1vh,12px)">
     <h1 class="hero reveal">La IA ya está<br>en tu bolsillo</h1>
     <div class="reveal" style="font-size:var(--size-h2);font-weight:700;opacity:0.92;margin-top:-0.3rem">Inteligencia Artificial para Bomberos</div>
     <div class="by reveal">Alan Tapia</div>
@@ -565,8 +588,8 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
       <div class="about-text">
         <span class="eyebrow reveal">Sobre mí</span>
         <h2 class="title reveal">Alan Tapia</h2>
-        <p class="about-role reveal">Empresario tecnológico · Conferencista en inteligencia artificial</p>
-        <p class="about-bio reveal">Fundador y CEO de <strong>Deenex</strong>, en el mercado gastronómico, y de <strong>Xnod</strong>, especializada en inteligencia artificial para empresas y corporaciones. Capacitador y asesor, con <strong>+350 clientes</strong> en todo el país.</p>
+        <p class="about-role reveal">Trabajo con inteligencia artificial, ayudando a gente que no es experta.</p>
+        <p class="about-bio reveal">Tengo dos empresas de tecnología y capacito equipos en todo el país. Lo que más me gusta es mostrarle a gente con cosas más importantes que hacer que esto <strong>ya lo sabe usar</strong>. Hoy me toca acá, con ustedes.</p>
       </div>
       <div class="photo-fan reveal">
         <div class="pf-item"><img src="assets/medio-1.jpg" alt="Alan Tapia en los medios (1)"></div>
@@ -584,24 +607,24 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
     <h2 class="title reveal">¿Por qué estoy <span class="accent">acá</span>?</h2>
     <ol class="reasons stagger">
       <li class="reason">
-        <div class="r-emoji">🚀<span class="r-num">1</span></div>
+        <div class="r-emoji" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M50 12c14 10 20 26 16 44l-16 10-16-10c-4-18 2-34 16-44z"/><circle cx="50" cy="40" r="8"/><path d="M34 60L22 76l16-4"/><path d="M66 60l12 16-16-4"/><path d="M50 70v16"/></svg><span class="r-num">1</span></div>
         <div class="r-body">
           <div class="r-head">Es un gran momento.</div>
           <div class="r-sub">Y están justo a tiempo.</div>
         </div>
       </li>
       <li class="reason">
-        <div class="r-emoji">📱<span class="r-num">2</span></div>
+        <div class="r-emoji" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><rect x="32" y="12" width="36" height="76" rx="9"/><line x1="46" y1="76" x2="54" y2="76"/></svg><span class="r-num">2</span></div>
         <div class="r-body">
           <div class="r-head">No hay que ser experto.</div>
           <div class="r-sub">Si manejás el teléfono, podés.</div>
         </div>
       </li>
       <li class="reason">
-        <div class="r-emoji">💪<span class="r-num">3</span></div>
+        <div class="r-emoji" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M50 12l30 11v25c0 21-13 33-30 40-17-7-30-19-30-40V23z"/><path d="M37 50l9 9 18-19"/></svg><span class="r-num">3</span></div>
         <div class="r-body">
           <div class="r-head">Los hace más fuertes.</div>
-          <div class="r-sub">Más tiempo para lo que importa.</div>
+          <div class="r-sub">Menos papeles. Más tiempo para salvar vidas.</div>
         </div>
       </li>
     </ol>
@@ -612,14 +635,14 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <section class="slide content-slide">
   <div class="slide-inner">
     <div class="illust reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
         <path d="M38 60V26a6 6 0 0 1 12 0v28"/>
         <path d="M50 54V20a6 6 0 0 1 12 0v34"/>
         <path d="M62 54V28a6 6 0 0 1 12 0v40c0 14-11 24-25 24-9 0-16-4-21-12l-11-17a6 6 0 0 1 9-8l7 7"/>
         <path d="M38 60V42a6 6 0 0 0-12 0v8"/>
       </svg>
     </div>
-    <h2 class="title reveal">¿Quién ya usó la<br><span class="accent">inteligencia artificial</span>?</h2>
+    <h2 class="title reveal">¿Quién ya usó la<br class="desk"><span class="accent">inteligencia artificial</span>?</h2>
   </div>
 </section>
 
@@ -627,7 +650,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <section class="slide content-slide">
   <div class="slide-inner">
     <div class="illust reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
         <path d="M22 26h56a8 8 0 0 1 8 8v30a8 8 0 0 1-8 8H46L28 86V72h-6a8 8 0 0 1-8-8V34a8 8 0 0 1 8-8z"/>
         <line x1="34" y1="44" x2="66" y2="44"/>
         <line x1="34" y1="56" x2="56" y2="56"/>
@@ -641,20 +664,20 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <!-- ===== S04 · QUÉ ES, LO SIMPLE ===== -->
 <section class="slide content-slide warm">
   <div class="slide-inner">
-    <h2 class="title reveal">Tres cosas a su favor.</h2>
+    <h2 class="title reveal">Tres cosas <span class="accent">a su favor</span>.</h2>
     <div class="three-col stagger">
       <div class="feature-card">
-        <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M50 28C42 22 30 22 22 24v50c8-2 20-2 28 4 8-6 20-6 28-4V24c-8-2-20-2-28 4z"/><line x1="50" y1="28" x2="50" y2="78"/></svg></div>
+        <div class="illust"><svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M50 28C42 22 30 22 22 24v50c8-2 20-2 28 4 8-6 20-6 28-4V24c-8-2-20-2-28 4z"/><line x1="50" y1="28" x2="50" y2="78"/></svg></div>
         <div class="label">Sabe de todo</div>
         <div class="desc">Medicina, leyes, cocina, técnica. Preguntale lo que sea.</div>
       </div>
       <div class="feature-card">
-        <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="52" r="30"/><path d="M50 52V34"/><path d="M50 52l14 9"/><path d="M50 14v6"/></svg></div>
+        <div class="illust"><svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="52" r="30"/><path d="M50 52V34"/><path d="M50 52l14 9"/><path d="M50 14v6"/></svg></div>
         <div class="label">Nunca se cansa</div>
-        <div class="desc">Disponible las 24 horas, los 365 días del año.</div>
+        <div class="desc">Hace guardia las 24 horas, los 365 días. Como ustedes.</div>
       </div>
       <div class="feature-card">
-        <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 30h56a8 8 0 0 1 8 8v24a8 8 0 0 1-8 8H46l-16 14V70h-8a8 8 0 0 1-8-8V38a8 8 0 0 1 8-8z"/><line x1="36" y1="46" x2="64" y2="46"/><line x1="36" y1="58" x2="56" y2="58"/></svg></div>
+        <div class="illust"><svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 30h56a8 8 0 0 1 8 8v24a8 8 0 0 1-8 8H46l-16 14V70h-8a8 8 0 0 1-8-8V38a8 8 0 0 1 8-8z"/><line x1="36" y1="46" x2="64" y2="46"/><line x1="36" y1="58" x2="56" y2="58"/></svg></div>
         <div class="label">Habla tu idioma</div>
         <div class="desc">Sin comandos ni claves. Escribís como le escribís a un amigo.</div>
       </div>
@@ -666,7 +689,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <section class="slide emphasis-slide">
   <div class="slide-inner">
     <span class="q-eyebrow reveal">Una pregunta</span>
-    <h2 class="emphasis-phrase reveal" style="max-width:1000px;font-size:clamp(2.4rem,5.5vw,4.6rem)">¿Cuántos años tiene la<br>inteligencia artificial?</h2>
+    <h2 class="emphasis-phrase reveal" style="max-width:1000px;font-size:clamp(2.4rem,5.5vw,4.6rem)">¿Cuántos años tiene la<br class="desk">inteligencia artificial?</h2>
     <div class="guess-bubbles stagger">
       <span class="guess-bubble">¿5 años?</span>
       <span class="guess-bubble">¿15?</span>
@@ -690,10 +713,19 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
       </figure>
       <div class="chess-text">
         <h2 class="title reveal">No es nueva.</h2>
-        <p class="body-text reveal">La idea nació en <strong>1956</strong>. Y para <strong>1997</strong> ya le ganaba al ajedrez al <strong>mejor del mundo</strong>.</p>
+        <p class="body-text reveal">La idea nació en <strong>1956</strong>: hace <strong>70 años</strong>. Y ya en el 97 le ganaba al ajedrez al <strong>mejor del mundo</strong>.</p>
         <div class="age-line reveal"><span class="num">70</span><span class="unit">años con nosotros</span></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ===== PERMISO AL ESCÉPTICO (empatía antes de los mitos) ===== -->
+<section class="slide emphasis-slide">
+  <div class="slide-inner">
+    <span class="q-eyebrow reveal">Lo digo yo antes que ustedes</span>
+    <p class="emphasis-phrase reveal">«Esto no es para mí.»</p>
+    <p class="emphasis-footnote reveal">Si lo pensaste, esta charla es exactamente para vos. Vamos a tirar cuatro mitos a la basura.</p>
   </div>
 </section>
 
@@ -701,14 +733,15 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <section class="slide block-slide">
   <div class="slide-inner">
     <div class="illust reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
         <path d="M26 34h48"/>
         <path d="M38 34V26a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4v8"/>
         <path d="M32 34l4 44a6 6 0 0 0 6 6h16a6 6 0 0 0 6-6l4-44"/>
         <line x1="44" y1="46" x2="44" y2="74"/><line x1="56" y1="46" x2="56" y2="74"/>
       </svg>
     </div>
-    <h2 class="block-title reveal">5 mitos<br>para tirar<br>a la basura</h2>
+    <!-- Regla copy: cifra cuando el número es el gancho (4 mitos, 5 cosas), letra cuando acompaña (Tres secretos) -->
+    <h2 class="block-title reveal">4 mitos<br>para tirar<br>a la basura</h2>
   </div>
 </section>
 
@@ -716,13 +749,13 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <section class="slide content-slide">
   <div class="slide-inner">
     <div class="illust sm reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
         <path d="M50 14c4 14-10 18-10 32a10 10 0 0 0 20 0c0-4-2-7-2-7 6 4 10 12 10 21a18 18 0 0 1-36 0c0-20 18-25 18-46z"/>
       </svg>
     </div>
     <div class="mito">
       <div class="mito-false reveal">Me va a reemplazar</div>
-      <div class="arrow-down reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg></div>
+      <div class="arrow-down reveal"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg></div>
       <div class="mito-true reveal">Es una herramienta más.<br><span class="accent">Como la autobomba.</span></div>
     </div>
     <div class="tiny-note reveal">La máquina la manejás vos.</div>
@@ -733,33 +766,17 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <section class="slide content-slide">
   <div class="slide-inner">
     <div class="illust sm reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
         <rect x="40" y="16" width="20" height="38" rx="10"/><path d="M30 46a20 20 0 0 0 40 0"/>
         <line x1="50" y1="66" x2="50" y2="80"/><line x1="38" y1="80" x2="62" y2="80"/>
       </svg>
     </div>
     <div class="mito">
       <div class="mito-false reveal">Es para los que saben de tecnología</div>
-      <div class="arrow-down reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg></div>
+      <div class="arrow-down reveal"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg></div>
       <div class="mito-true reveal">Si sabés mandar un audio,<br><span class="accent">ya sabés usarla</span>.</div>
     </div>
-  </div>
-</section>
-
-<!-- ===== S09 · MITO 3 ===== -->
-<section class="slide content-slide">
-  <div class="slide-inner">
-    <div class="illust sm reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M62 34c-4-5-11-8-18-6-8 2-12 9-8 15 4 7 22 6 26 14 4 7-2 14-10 15-7 1-15-2-18-7"/>
-        <line x1="50" y1="20" x2="50" y2="80"/><line x1="24" y1="76" x2="76" y2="24"/>
-      </svg>
-    </div>
-    <div class="mito">
-      <div class="mito-false reveal">Es cara</div>
-      <div class="arrow-down reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg></div>
-      <div class="mito-true reveal">Existen <span class="accent">opciones gratuitas</span>.</div>
-    </div>
+    <div class="tiny-note reveal">Y sí: apretá el micrófono y hablale. No hace falta escribir.</div>
   </div>
 </section>
 
@@ -767,15 +784,15 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <section class="slide content-slide">
   <div class="slide-inner">
     <div class="illust sm reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
         <rect x="20" y="22" width="60" height="44" rx="6"/><rect x="30" y="32" width="40" height="24" rx="2"/>
         <line x1="40" y1="66" x2="40" y2="74"/><line x1="60" y1="66" x2="60" y2="74"/><line x1="30" y1="74" x2="70" y2="74"/>
       </svg>
     </div>
     <div class="mito">
       <div class="mito-false reveal">Es una moda</div>
-      <div class="arrow-down reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg></div>
-      <div class="mito-true reveal">Lo mismo decían del<br><span class="accent">internet en el 95</span>.</div>
+      <div class="arrow-down reveal"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg></div>
+      <div class="mito-true reveal">Lo mismo decían de<br class="desk"><span class="accent">internet en el 95</span>.</div>
     </div>
   </div>
 </section>
@@ -784,14 +801,14 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <section class="slide content-slide">
   <div class="slide-inner">
     <div class="illust sm reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="44" cy="44" r="22"/><line x1="60" y1="60" x2="80" y2="80"/>
       </svg>
     </div>
     <div class="mito">
       <div class="mito-false reveal">Inventa cosas</div>
-      <div class="arrow-down reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg></div>
-      <div class="mito-true reveal">A veces sí. Revisala,<br>como a un <span class="accent">empleado nuevo</span>.</div>
+      <div class="arrow-down reveal"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg></div>
+      <div class="mito-true reveal">A veces sí. Revisala,<br>como a un <span class="accent">aspirante en su primera guardia</span>.</div>
     </div>
   </div>
 </section>
@@ -799,16 +816,16 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <!-- ===== S12 · CÓMO FUNCIONA ===== -->
 <section class="slide content-slide warm">
   <div class="slide-inner">
-    <h2 class="title reveal">¿Cómo sabe tanto?</h2>
+    <h2 class="title reveal">¿Cómo sabe <span class="accent">tanto</span>?</h2>
     <div class="illust reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
         <rect x="20" y="62" width="60" height="15" rx="3"/>
         <rect x="25" y="44" width="50" height="15" rx="3"/>
         <rect x="18" y="26" width="56" height="15" rx="3"/>
         <line x1="34" y1="26" x2="34" y2="41"/><line x1="39" y1="62" x2="39" y2="77"/>
       </svg>
     </div>
-    <div class="body-text reveal" style="max-width:880px">Se leyó <strong>casi todo lo que se escribió</strong>: libros, manuales, enciclopedias, diarios. Millones. Y no se olvida de nada.</div>
+    <div class="body-text reveal" style="max-width:620px">Se leyó <strong>casi todo lo que se escribió</strong>: libros, manuales, enciclopedias, diarios. Millones. Y no se olvida de nada.</div>
     <div class="tiny-note reveal">Como el bibliotecario más sabio del mundo, en tu teléfono.</div>
   </div>
 </section>
@@ -821,7 +838,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <section class="slide content-slide">
   <div class="slide-inner">
     <div class="illust reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
         <path d="M28 36h44l-4 44a6 6 0 0 1-6 6H38a6 6 0 0 1-6-6z"/>
         <path d="M38 36v-4a12 12 0 0 1 24 0v4"/>
       </svg>
@@ -830,28 +847,29 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
   </div>
 </section>
 
-<!-- ===== S14 · LAS 4 COSITAS ===== -->
-<section class="slide content-slide warm">
+<!-- ===== ANALOGÍA: LIMPIAR LA CASA (mal) ===== -->
+<section class="slide content-slide">
   <div class="slide-inner">
-    <h2 class="title reveal">La estructura de un <span class="accent">buen mandado</span>.</h2>
-    <div class="four-col stagger">
-      <div class="feature">
-        <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="36" r="14"/><path d="M24 82c0-15 12-26 26-26s26 11 26 26"/></svg></div>
-        <div class="label">Quién querés que sea</div>
-      </div>
-      <div class="feature">
-        <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M34 16h24l16 16v52H34z"/><path d="M58 16v16h16"/><line x1="42" y1="50" x2="66" y2="50"/><line x1="42" y1="62" x2="66" y2="62"/><line x1="42" y1="74" x2="58" y2="74"/></svg></div>
-        <div class="label">Qué querés</div>
-      </div>
-      <div class="feature">
-        <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="38" cy="38" r="10"/><circle cx="62" cy="38" r="10"/><path d="M22 78c0-11 7-19 16-19 4 0 7 1 10 3 3-2 6-3 10-3 9 0 16 8 16 19"/></svg></div>
-        <div class="label">Para quién</div>
-      </div>
-      <div class="feature">
-        <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><line x1="24" y1="34" x2="76" y2="34"/><line x1="24" y1="52" x2="76" y2="52"/><line x1="24" y1="70" x2="76" y2="70"/><circle cx="62" cy="34" r="7" fill="currentColor" stroke="none"/><circle cx="40" cy="52" r="7" fill="currentColor" stroke="none"/><circle cx="64" cy="70" r="7" fill="currentColor" stroke="none"/></svg></div>
-        <div class="label">Cómo lo querés</div>
-      </div>
+    <h2 class="title reveal">Es como mandar a <span class="accent">limpiar la casa</span>.</h2>
+    <div class="demo reveal">
+      <div class="demo-tag bad">Así no</div>
+      <div class="demo-ask">«Limpiá la casa»</div>
+      <div class="demo-answer"><span class="muted">Volvés… y la mesa sin tocar, los vidrios sucios, el piso a medias.</span></div>
     </div>
+    <div class="lead reveal">¿La culpa? <span style="color:var(--red-600)">Del que pidió: no fue específico.</span></div>
+  </div>
+</section>
+
+<!-- ===== ANALOGÍA: LIMPIAR LA CASA (bien) ===== -->
+<section class="slide content-slide">
+  <div class="slide-inner">
+    <h2 class="title reveal">Ahora pedilo <span class="accent">bien.</span></h2>
+    <div class="demo good-wrap">
+      <div class="demo-tag good reveal">Así sí</div>
+      <div class="demo-ask reveal">«Limpiá la cocina y el comedor: lavá los platos, pasá un trapo a la mesa y a las mesadas, barré y baldeá el piso. Que quede todo listo antes de las 8, que viene gente.»</div>
+      <div class="demo-answer reveal">Volvés… y está <strong>todo hecho</strong>: los platos guardados, la mesa reluciente, el piso impecable. <span class="muted">Tal cual lo pediste.</span></div>
+    </div>
+    <div class="lead reveal">La diferencia no es la IA. <span style="color:var(--red-600)">Es cómo lo pedís.</span></div>
   </div>
 </section>
 
@@ -859,23 +877,23 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <section class="slide content-slide">
   <div class="slide-inner">
     <div class="illust sm reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="22" width="26" height="26" rx="4"/><rect x="54" y="22" width="26" height="26" rx="4"/><rect x="22" y="54" width="26" height="26" rx="4"/><rect x="54" y="54" width="26" height="26" rx="4"/></svg>
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="22" width="26" height="26" rx="4"/><rect x="54" y="22" width="26" height="26" rx="4"/><rect x="22" y="54" width="26" height="26" rx="4"/><rect x="54" y="54" width="26" height="26" rx="4"/></svg>
     </div>
-    <h2 class="title reveal">Se arma así.</h2>
+    <h2 class="title reveal">Un buen mandado se arma <span class="accent">así</span>.</h2>
     <ol class="formula stagger">
       <li><span class="key">Portate como</span> <span class="val">un jefe de cuartel</span></li>
       <li><span class="key">Necesito que</span> <span class="val">escribas un comunicado</span></li>
       <li><span class="key">Es para</span> <span class="val">los bomberos del cuartel</span></li>
       <li><span class="key">Que sea</span> <span class="val">corto y firme</span></li>
     </ol>
-    <div class="tiny-note reveal">Las cuatro cositas, en una sola frase.</div>
+    <div class="tiny-note reveal">Las cuatro cosas, en una sola frase.</div>
   </div>
 </section>
 
 <!-- ===== DEMO: prompt → salida (dos fotos) ===== -->
 <section class="slide content-slide">
   <div class="slide-inner">
-    <h2 class="title reveal">Esto pedí... <span class="accent">y esto me dio.</span></h2>
+    <h2 class="title reveal">Esto pedí… <span class="accent">y esto me dio.</span></h2>
     <div class="io-layout stagger">
       <figure class="io-card" style="margin:0">
         <span class="io-tag prompt">Lo que escribí</span>
@@ -885,7 +903,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
         </div>
       </figure>
       <div class="io-arrow reveal">
-        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><line x1="14" y1="50" x2="80" y2="50"/><polyline points="56,26 84,50 56,74"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><line x1="14" y1="50" x2="80" y2="50"/><polyline points="56,26 84,50 56,74"/></svg>
       </div>
       <figure class="io-card" style="margin:0">
         <span class="io-tag out">Lo que respondió</span>
@@ -899,81 +917,26 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
   </div>
 </section>
 
-<!-- ===== TRES SECRETOS (tips para pedir bien) ===== -->
+<!-- ===== CORREGÍ SIN MIEDO (la idea que falta tras la demo) ===== -->
 <section class="slide content-slide warm">
   <div class="slide-inner">
-    <h2 class="title reveal">Tres secretos.</h2>
-    <div class="secrets stagger">
-      <div class="secret">
-        <div class="secret-num">1</div>
-        <div class="label">Sé específico</div>
-        <div class="tiny-note">Pedí con detalle: qué necesitás, para cuándo y de qué largo.</div>
-      </div>
-      <div class="secret">
-        <div class="secret-num">2</div>
-        <div class="label">Dale contexto</div>
-        <div class="tiny-note">Contale la situación: para qué es y para quién va dirigido.</div>
-      </div>
-      <div class="secret">
-        <div class="secret-num">3</div>
-        <div class="label">Corregí sin miedo</div>
-        <div class="tiny-note">¿No te gustó? Decile qué cambiar y lo rehace al instante.</div>
-      </div>
+    <div class="illust sm reveal">
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M78 50a28 28 0 1 1-8-19"/>
+        <polyline points="78 16 78 34 60 34"/>
+      </svg>
     </div>
-  </div>
-</section>
-
-<!-- ===== ANALOGÍA: LIMPIAR LA CASA ===== -->
-<section class="slide content-slide">
-  <div class="slide-inner">
-    <h2 class="title reveal">Es como mandar a limpiar la casa.</h2>
-    <div class="demo reveal" style="max-width:880px">
-      <div class="demo-ask">«Limpiá la casa»</div>
-      <div class="demo-answer"><span class="muted">Volvés… y la mesa sin tocar, los vidrios sucios, el piso a medias.</span></div>
-    </div>
-    <div class="lead reveal">¿La culpa? <span style="color:var(--red-600)">Tuya: no fuiste específico.</span></div>
-  </div>
-</section>
-
-<!-- ===== ANALOGÍA: LIMPIAR LA CASA (bien) ===== -->
-<section class="slide content-slide">
-  <div class="slide-inner">
-    <h2 class="title reveal">Ahora pedilo <span class="accent">bien.</span></h2>
-    <div class="demo good-wrap">
-      <div class="demo-tag good reveal">Así sí</div>
-      <div class="demo-ask reveal">«Limpiá la cocina y el comedor: lavá los platos, pasá un trapo a la mesa y las mesadas, barré y baldeá el piso. Que quede listo antes de las 8 que viene gente.»</div>
-      <div class="demo-answer reveal">Volvés… y está <strong>todo hecho</strong>: los platos guardados, la mesa reluciente, el piso impecable. <span class="muted">Tal cual lo pediste.</span></div>
-    </div>
-    <div class="lead reveal">La diferencia no es la IA. <span style="color:var(--red-600)">Es cómo lo pedís.</span></div>
-  </div>
-</section>
-
-<!-- ===== S16 · PEDIR MAL (demo) ===== -->
-<section class="slide content-slide">
-  <div class="slide-inner">
-    <div class="demo">
-      <div class="demo-tag bad reveal">Pedir mal</div>
-      <div class="demo-ask reveal">«Escribime un comunicado»</div>
-      <div class="demo-answer reveal"><span class="muted">Estimados: por medio de la presente queremos comunicarles información importante para todos los integrantes. Agradecemos su atención y quedamos a disposición ante cualquier consulta. Saludos cordiales.</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== S17 · PEDIR BIEN (demo) ===== -->
-<section class="slide content-slide">
-  <div class="slide-inner">
-    <div class="demo good-wrap">
-      <div class="demo-tag good reveal">Pedir bien</div>
-      <div class="demo-ask reveal">«Portate como jefe de cuartel, escribime un comunicado avisando que el sábado hay capacitación obligatoria, firme pero respetuoso, cortito»</div>
-      <div class="demo-answer reveal"><strong>Cuerpo Activo:</strong> Les informo que este <strong>sábado a las 9:00</strong> tenemos <strong>capacitación obligatoria</strong> en el cuartel. La presencia de todos es fundamental. Cuento con el compromiso de siempre.<br>— Jefe de Cuartel</div>
-    </div>
+    <h2 class="title reveal">¿No te gustó? <span class="accent">Decíselo.</span></h2>
+    <div class="lead reveal">«Más corto.» «Más formal.» «Hacelo de nuevo.»</div>
+    <div class="body-text reveal">Lo rehace al instante.</div>
+    <div class="tiny-note reveal">No se rompe nada. No se ofende. Probá.</div>
   </div>
 </section>
 
 <!-- ===== S18 · LAS HERRAMIENTAS ===== -->
 <section class="slide content-slide warm">
   <div class="slide-inner">
-    <h2 class="title reveal">Con <span class="accent">versiones gratis</span>.</h2>
+    <h2 class="title reveal">¿Cuánto sale todo esto? <span class="accent">Gratis.</span></h2>
     <div class="tool-tiles stagger">
       <div class="tool-tile">
         <div class="badge" style="background:#25D366"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></div>
@@ -984,11 +947,11 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
         <div class="t-name">ChatGPT</div>
       </div>
       <div class="tool-tile">
-        <div class="badge" style="background:#D97706"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></div>
+        <div class="badge" style="background:#C15F3C"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></div>
         <div class="t-name">Claude</div>
       </div>
     </div>
-    <div class="tiny-note reveal">No hace falta acordarse los nombres.</div>
+    <div class="tiny-note reveal">No hace falta acordarse de los nombres.</div>
   </div>
 </section>
 
@@ -1000,7 +963,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <section class="slide content-slide">
   <div class="slide-inner">
     <div class="illust reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 82V42l32-22 32 22v40"/>
         <line x1="12" y1="82" x2="88" y2="82"/>
         <rect x="42" y="58" width="16" height="24"/>
@@ -1009,7 +972,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
       </svg>
     </div>
     <span class="eyebrow reveal">Manos a la obra</span>
-    <h2 class="title reveal">¿Cómo lo usamos<br>en el <span class="accent">cuartel</span>?</h2>
+    <h2 class="title reveal">¿Cómo lo usamos<br class="desk">en el <span class="accent">cuartel</span>?</h2>
     <div class="subtitle reveal" style="max-width:820px">Casos reales, del día a día.</div>
   </div>
 </section>
@@ -1018,7 +981,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <section class="slide content-slide">
   <div class="slide-inner">
     <div class="illust sm reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
         <rect x="26" y="14" width="48" height="72" rx="8"/><rect x="34" y="22" width="32" height="16" rx="2"/>
         <g fill="currentColor" stroke="none"><circle cx="38" cy="52" r="3.5"/><circle cx="50" cy="52" r="3.5"/><circle cx="62" cy="52" r="3.5"/><circle cx="38" cy="64" r="3.5"/><circle cx="50" cy="64" r="3.5"/><circle cx="62" cy="64" r="3.5"/><circle cx="38" cy="76" r="3.5"/><circle cx="50" cy="76" r="3.5"/><circle cx="62" cy="76" r="3.5"/></g>
       </svg>
@@ -1033,7 +996,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <section class="slide content-slide">
   <div class="slide-inner">
     <div class="illust reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
         <rect x="24" y="18" width="52" height="64" rx="6"/>
         <path d="M33 35l5 5 9-9"/><line x1="54" y1="37" x2="68" y2="37"/>
         <path d="M33 53l5 5 9-9"/><line x1="54" y1="55" x2="68" y2="55"/>
@@ -1045,16 +1008,30 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 </section>
 
 <!-- ===== S23 · LA FOTO ===== -->
-<section class="slide content-slide warm">
+<section class="slide content-slide">
   <div class="slide-inner">
     <div class="illust reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
         <path d="M20 34h14l6-8h20l6 8h14a6 6 0 0 1 6 6v34a6 6 0 0 1-6 6H20a6 6 0 0 1-6-6V40a6 6 0 0 1 6-6z"/>
         <circle cx="50" cy="56" r="14"/>
       </svg>
     </div>
-    <h2 class="title reveal">Sacale una foto a un operativo.</h2>
-    <div class="subtitle reveal" style="max-width:820px">Te cuida como el veterano más sabio.</div>
+    <h2 class="title reveal">Sacale una <span class="accent">foto</span> a un operativo.</h2>
+    <div class="subtitle reveal" style="max-width:820px">Preguntale: «¿Qué riesgos ves?». Te cuida como el veterano más sabio.</div>
+  </div>
+</section>
+
+<!-- ===== ¿Y ESTO ES SEGURO? (objeción silenciosa de privacidad) ===== -->
+<section class="slide content-slide warm">
+  <div class="slide-inner">
+    <span class="eyebrow reveal">La pregunta del millón</span>
+    <h2 class="title reveal">¿Y esto es <span class="accent">seguro</span>?</h2>
+    <ol class="lunes stagger" style="max-width:880px">
+      <li><span class="num">1</span> Usala con el mismo criterio que WhatsApp.</li>
+      <li><span class="num">2</span> Los números del cuartel: sí. Como se los darías al contador.</li>
+      <li><span class="num">3</span> Documentos y fichas médicas de personas: mejor afuera.</li>
+    </ol>
+    <div class="tiny-note reveal">Qué contarle lo decidís vos. Siempre.</div>
   </div>
 </section>
 
@@ -1065,13 +1042,21 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <!-- ===== S24 · TU PROBLEMA, AHORA (interactivo) ===== -->
 <section class="slide content-slide">
   <div class="slide-inner">
-    <div class="illust sm reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <div class="illust reveal">
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
         <path d="M50 18a22 22 0 0 0-14 39c3 3 5 6 5 10h18c0-4 2-7 5-10a22 22 0 0 0-14-39z"/>
         <line x1="42" y1="80" x2="58" y2="80"/><line x1="45" y1="88" x2="55" y2="88"/>
       </svg>
     </div>
-    <h2 class="title reveal">¿Quién trae un <span class="accent">dolor de cabeza</span><br>de su cuartel?</h2>
+    <h2 class="title reveal">¿Quién trae un <span class="accent">dolor de cabeza</span><br class="desk">de su cuartel?</h2>
+  </div>
+</section>
+
+<!-- ===== PAYOFF DEL MOMENTO EN VIVO (remate de la demo) ===== -->
+<section class="slide emphasis-slide">
+  <div class="slide-inner">
+    <p class="emphasis-phrase reveal">Esto acaba de pasar <span class="accent">acá, en vivo</span>.</p>
+    <p class="emphasis-footnote reveal">Con un teléfono igual al que tenés en el bolsillo.</p>
   </div>
 </section>
 
@@ -1089,7 +1074,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
       <li><span class="num">2</span> Pedile un mensaje para el grupo del cuartel.</li>
       <li><span class="num">3</span> Pedile una lista de tareas para la guardia.</li>
       <li><span class="num">4</span> Sacale una foto a algo y preguntale qué ve.</li>
-      <li><span class="num">5</span> Preguntale cualquier duda.</li>
+      <li><span class="num">5</span> Contanos en el grupo cómo te fue.</li>
     </ol>
   </div>
 </section>
@@ -1097,7 +1082,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <!-- ===== S26 · EL CARTELITO (QR) ===== -->
 <section class="slide content-slide">
   <div class="slide-inner">
-    <h2 class="title reveal">Entrá a las herramientas</h2>
+    <h2 class="title reveal">Guardá una en tu teléfono, <span class="accent">ahora</span>.</h2>
     <!-- QR editables: si cambian los destinos, reemplazá los PNG en assets/ con el mismo nombre. -->
     <div class="qr-grid stagger">
       <div class="qr-card"><img src="assets/qr-meta.svg" alt="Código QR del Asistente de WhatsApp (meta.ai)"><div class="q-name">Asistente de WhatsApp</div></div>
@@ -1112,29 +1097,22 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
   </div>
 </section>
 
-<!-- ===== S27 · ORGULLO ===== -->
-<section class="slide emphasis-slide">
-  <div class="slide-inner">
-    <p class="emphasis-phrase reveal">En esta sala hay <span class="accent">miles de años</span> de experiencia.</p>
-    <p class="emphasis-footnote reveal">Eso no lo reemplaza ninguna máquina.</p>
-  </div>
-</section>
-
 <!-- ===== INICIATIVA 1 · GRUPO OFICIAL (presentación + QR) ===== -->
 <section class="slide content-slide">
   <div class="slide-inner">
     <div class="brand-lockup reveal">
-      <img src="assets/logo-federacion.png" alt="Federación de Bomberos Voluntarios de la Provincia de Buenos Aires">
+      <img src="assets/logo-federacion.jpg" alt="Federación de Asociaciones de Bomberos Voluntarios de la Provincia de Buenos Aires">
       <div class="bl-divider"></div>
       <div class="bl-text">
-        <div class="bl-sigla">Bomberos PBA</div>
+        <!-- Sigla provisional: confirmar nombre oficial del canal con la Federación antes del evento -->
+        <div class="bl-sigla">Federación Bonaerense</div>
         <div class="bl-tag">Tecnología</div>
       </div>
     </div>
     <div class="grupo-grid">
       <div class="grupo-text">
         <h2 class="title reveal">El grupo oficial de la <span class="accent">Federación</span>, enfocado en <span class="accent">tecnología</span>.</h2>
-        <p class="subtitle reveal">Un solo canal de WhatsApp para todos los cuarteles de la provincia.</p>
+        <p class="subtitle reveal">Un solo grupo de WhatsApp para todos los cuarteles de la provincia.</p>
       </div>
       <div class="qr-join reveal"><img src="assets/qr-grupo.svg" alt="Código QR del grupo oficial de WhatsApp"></div>
     </div>
@@ -1148,15 +1126,15 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
     <h2 class="title reveal">Un consejo de tecnología,<br><span class="accent">todas las semanas</span>.</h2>
     <div class="init-points stagger">
       <div class="init-point">
-        <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M50 20a22 22 0 0 0-13 39c3 2 5 5 5 9h16c0-4 2-7 5-9a22 22 0 0 0-13-39z"/><line x1="42" y1="80" x2="58" y2="80"/><line x1="45" y1="87" x2="55" y2="87"/></svg></div>
+        <div class="illust"><svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M50 20a22 22 0 0 0-13 39c3 2 5 5 5 9h16c0-4 2-7 5-9a22 22 0 0 0-13-39z"/><line x1="42" y1="80" x2="58" y2="80"/><line x1="45" y1="87" x2="55" y2="87"/></svg></div>
         <div class="label">Práctico y al grano</div>
       </div>
       <div class="init-point">
-        <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="28" width="56" height="50" rx="6"/><line x1="22" y1="42" x2="78" y2="42"/><line x1="38" y1="20" x2="38" y2="32"/><line x1="62" y1="20" x2="62" y2="32"/><path d="M40 58l7 7 13-14"/></svg></div>
+        <div class="illust"><svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="28" width="56" height="50" rx="6"/><line x1="22" y1="42" x2="78" y2="42"/><line x1="38" y1="20" x2="38" y2="32"/><line x1="62" y1="20" x2="62" y2="32"/><path d="M40 58l7 7 13-14"/></svg></div>
         <div class="label">Una vez por semana</div>
       </div>
       <div class="init-point">
-        <div class="illust"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="50" r="30"/><path d="M44 38l20 12-20 12z" fill="currentColor" stroke="none"/></svg></div>
+        <div class="illust"><svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="50" r="30"/><path d="M44 38l20 12-20 12z" fill="currentColor" stroke="none"/></svg></div>
         <div class="label">En texto o en video</div>
       </div>
     </div>
@@ -1168,7 +1146,7 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
 <section class="slide emphasis-slide">
   <div class="slide-inner">
     <div class="illust reveal">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+      <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
         <path d="M35 50V30a5 5 0 0 1 10 0v18"/>
         <path d="M45 48V24a5 5 0 0 1 10 0v24"/>
         <path d="M55 48V28a5 5 0 0 1 10 0v22"/>
@@ -1180,12 +1158,20 @@ body:has(.title-slide.visible) .keyboard-hint { opacity:0.9; }
   </div>
 </section>
 
+<!-- ===== S27 · ORGULLO (clímax — anteúltimo, la última palabra es nuestra) ===== -->
+<section class="slide emphasis-slide">
+  <div class="slide-inner">
+    <p class="emphasis-phrase reveal">En esta sala hay <span class="accent">miles de años</span> de experiencia.</p>
+    <p class="emphasis-footnote reveal">Eso no lo reemplaza ninguna máquina.</p>
+  </div>
+</section>
+
 <!-- ===== INICIATIVA · SUMATE (QR del grupo, pantalla final) ===== -->
 <section class="slide content-slide">
   <div class="slide-inner" style="gap:var(--gap)">
-    <h2 class="title reveal">Sumate al grupo.</h2>
+    <h2 class="title reveal">Sumate al <span class="accent">grupo</span>.</h2>
     <!-- QR del grupo: reemplazá assets/qr-grupo.svg con el link real de invitación de WhatsApp -->
-    <div class="qr-join reveal"><img src="assets/qr-grupo.svg" alt="Código QR para unirse al grupo de WhatsApp"></div>
+    <div class="qr-join lg reveal"><img src="assets/qr-grupo.svg" alt="Código QR para unirse al grupo de WhatsApp"></div>
     <div class="cam-steps reveal">
       <span class="step">Abrí la cámara</span><span class="sep">→</span>
       <span class="step">apuntá</span><span class="sep">→</span>
@@ -1303,7 +1289,8 @@ class SlidePresentation {
     prev() { this.goTo(Math.max(this.currentIndex - 1, 0)); }
 
     goTo(i) {
-        this.slides[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        this.slides[i].scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
         this.currentIndex = i;
         this.updateProgress();
         this.updateDots();
@@ -1313,15 +1300,27 @@ class SlidePresentation {
     updateProgress() {
         const pct = (this.currentIndex / (this.slides.length - 1)) * 100;
         this.progressBar.style.width = `${pct}%`;
+        document.body.classList.toggle('at-start', this.currentIndex === 0);
     }
-    updateDots() { this.navDots.forEach((d, i) => d.classList.toggle('active', i === this.currentIndex)); }
+    updateDots() {
+        this.navDots.forEach((d, i) => {
+            const on = i === this.currentIndex;
+            d.classList.toggle('active', on);
+            if (on) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+        });
+    }
     updateArrows() {
         this.prevBtn.disabled = this.currentIndex === 0;
         this.nextBtn.disabled = this.currentIndex === this.slides.length - 1;
     }
 }
 
-new SlidePresentation();
+try {
+    new SlidePresentation();
+} catch (e) {
+    // Si el JS falla, que el deck igual se vea entero (el scroll-snap nativo sigue navegando).
+    document.querySelectorAll('.reveal, .stagger > *').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+}
 </script>
 
 </body>
